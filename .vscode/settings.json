@@ -1,0 +1,72 @@
+{
+  // ============ Общие настройки редактора ============
+  "window.zoomLevel": 1, // Уровень масштабирования интерфейса
+  "editor.fontSize": 18, // Размер шрифта кода (было 18)
+  "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace", // Шрифт с лигатурами
+  "editor.fontLigatures": true, // Включить лигатуры (->, => и др.)
+  "editor.tabSize": 2, // Размер табуляции (2 пробела)
+  "editor.lineHeight": 26, // Высота строки (было 28)
+  "editor.cursorStyle": "line", // Стиль курсора (линия)
+  "editor.cursorBlinking": "phase", // Анимация курсора
+  "editor.renderWhitespace": "selection", // Показывать пробелы только при выделении
+  "editor.wordWrap": "off", // Отключить перенос строк
+  "editor.detectIndentation": false, // Не автоопределять отступы
+  "editor.minimap.enabled": false, // Отключить мини-карту кода
+
+  // ============ Форматирование ============
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Форматировать через Prettier
+  "editor.formatOnSave": true, // Автоформатирование при сохранении
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Для TS-файлов
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Для TSX-файлов
+  },
+
+  // ============ ESLint ============
+  "eslint.packageManager": "npm", // Использовать npm для ESLint
+  "eslint.validate": [
+    // Проверять файлы:
+    "javascript",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.codeAction.showDocumentation": {
+    // Показывать документацию
+    "enable": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // ============ Рабочая среда ============
+  "workbench.colorTheme": "Mokka", // Тема интерфейса
+  "workbench.iconTheme": "vscode-icons", // Иконки файлов
+  "workbench.sideBar.location": "right", // Боковая панель справа
+  "breadcrumbs.enabled": true, // Включить "хлебные крошки"
+
+  // ============ Терминал ============
+  "terminal.integrated.fontSize": 14, // Размер шрифта терминала
+  "terminal.integrated.fontFamily": "'Fira Code'", // Шрифт терминала
+  "terminal.integrated.cursorStyle": "underline", // Стиль курсора
+  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe", // Git Bash
+
+  // ============ Git ============
+  "git.enableSmartCommit": true, // Умные коммиты
+  "git.autofetch": true, // Автозагрузка изменений
+  "git.confirmSync": false, // Не спрашивать подтверждение pull
+
+  // ============ Языковые особенности ============
+  "javascript.updateImportsOnFileMove.enabled": "always", // Обновлять импорты при перемещении
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "emmet.triggerExpansionOnTab": true, // Использовать Tab для Emmet
+  "[html]": {
+    // Для HTML:
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    // Для CSS:
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
