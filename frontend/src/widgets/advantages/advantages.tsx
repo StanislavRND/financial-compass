@@ -13,7 +13,7 @@ export const Advantages = () => {
             инструмент для самореализации. Кем вы хотите быть, и как заработанные вами деньги могут
             помочь вам этого достичь?»
           </h3>
-          <img src="../../../public/advantage.jpg" alt="advantage" />
+          <img src="advantage.jpg" alt="advantage" />
         </div>
 
         <div className={styles['advantages__block']}>

@@ -27,7 +27,7 @@ export const Intro = () => {
             />
             <img
               className={styles.introRightPhone}
-              src="../../../public/image-removebg-preview.png"
+              src="image-removebg-preview.png"
               alt="finance phone"
             />
             <div className={styles.introRightShadow}></div>
