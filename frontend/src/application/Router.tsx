@@ -5,7 +5,7 @@ import '../shared/styles/base.scss'
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route key={'home page'} element={<Navigate to={'/home'} />} path="/" />
+      <Route key={''} element={<Navigate to={'/home'} />} path="/" />
       <Route key={'home page'} element={<LandingPage />} path="/home" />
     </Routes>
   )

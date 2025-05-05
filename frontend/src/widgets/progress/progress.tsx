@@ -3,6 +3,7 @@ import 'keen-slider/keen-slider.min.css'
 import { useState } from 'react'
 import { BENEFITS_TEXT } from '../../entities/progress/const/benefits'
 import { ProgressItem } from '../../entities/progress/ui/progress-item'
+import { useAutoScroll } from '../../features/progress-slider/useAutoScroll'
 import { useProgressSlider } from '../../features/progress-slider/useProgressSlider'
 import stylesGlobal from '../../shared/styles/global.module.scss'
 import { SliderArrows } from '../../shared/ui/slider-arrow/slider-arrow'
@@ -16,6 +17,8 @@ export const Progress = () => {
 
   const goToNext = () => slider.current?.next()
   const goToPrev = () => slider.current?.prev()
+
+  useAutoScroll(isMobile, styles['progress-scroll-container'])
 
   return (
     <section id="features" className={styles.progress}>

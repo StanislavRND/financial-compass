@@ -36,7 +36,7 @@ export const useProgressSlider = (onSlideChange: (idx: number) => void) => {
     created(slider) {
       setInterval(() => {
         slider.next()
-      }, 3500)
+      }, 2500)
     },
     slideChanged(slider) {
       onSlideChange(slider.track.details.rel)
