@@ -1,0 +1,95 @@
+.pholosophy {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 150px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://cdn.prod.website-files.com/640f69143ec11b21d42015c6/6758a5396561162bbe65ae7f_Trial%20CTA%20Footer_noise.avif');
+    background-repeat: repeat;
+    width: 100%;
+    background-size: cover;
+    object-fit: cover;
+    opacity: 1;
+    z-index: -1;
+  }
+
+  .pholosophyBlock {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: 185px;
+    color: white;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      margin-top: 250px;
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      margin-top: 150px;
+    }
+  }
+
+  .pholosophyLeft {
+    .pholosophyLeftPhone {
+      object-fit: cover;
+      width: 500px;
+
+      @media (max-width: 978px) {
+        width: 400px;
+      }
+
+      @media (max-width: 800px) {
+        width: 550px;
+      }
+
+      @media (max-width: 580px) {
+        width: 450px;
+      }
+      @media (max-width: 500px) {
+        width: 400px;
+      }
+    }
+  }
+
+  .pholosophyRight {
+    max-width: 600px;
+    .pholosophyRightTitle {
+      font-size: 2.3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 40px;
+    }
+
+    .pholosophyRightSubtitle {
+      margin-bottom: 20px;
+      line-height: 24px;
+    }
+
+    .pholosophyButton {
+      padding: 1.1rem 2.2rem;
+      font-size: 1rem;
+      border-radius: 0.6rem;
+    }
+
+    @media (max-width: 978px) {
+      .pholosophyRightTitle {
+        font-size: 1.8rem;
+      }
+
+      .pholosophyRightSubtitle {
+        font-size: 0.95rem;
+      }
+
+      .pholosophyButton {
+        width: 100%;
+        font-size: 1rem;
+        border-radius: 0.6rem;
+      }
+    }
+  }
+}

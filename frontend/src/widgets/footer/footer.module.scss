@@ -1,0 +1,33 @@
+.footer {
+  position: relative;
+  padding: 60px 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg-accent);
+    z-index: -2;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 99%;
+    height: 160px;
+    background-image: url('https://cdn.prod.website-files.com/640f69143ec11b21d42015c6/670d51dbed58e830275084b9_footer_swoop_peek.svg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+    z-index: -1;
+  }
+
+  .text {
+    font-size: 1.2rem;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,29 @@
+.arrows {
+  position: relative;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+.left,
+.right {
+  position: absolute;
+  top: 20px;
+  background: none;
+  cursor: pointer;
+  z-index: 11;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.left {
+  left: -20px;
+}
+
+.right {
+  right: -20px;
+}

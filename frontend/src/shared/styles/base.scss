@@ -1,0 +1,196 @@
+:root {
+  --bg-primary: #545bfe;
+  --bg-secondary: #aee865;
+  --bg-accent: #1c1f58;
+  /* ===== Текст ===== */
+  --text-primary: #fdf9ed;
+  --text-secondary: #fdf3d2;
+  --text-accent: #aee865;
+
+  /* ===== Кнопки ===== */
+  --btn-primary: #545bfe;
+  --btn-primary-hover: #3e49e6;
+  --btn-success: #aee865;
+  --btn-success-hover: #8ccf4b;
+
+  /* ===== Детали ===== */
+  --border-color: #1c1f58;
+  --highlight: #fdf3d2;
+  --chart-green: #41d298;
+  --chart-red: #f87171;
+  --gold: #facc15;
+
+  /* ===== Тени ===== */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 6px 10px rgba(0, 0, 0, 0.3);
+
+  /* ===== Шрифт ===== */
+  --base-font: 'Montserrat';
+
+  /* ===== Дополнительные зелёные и синие оттенки ===== */
+  --blue-light: #c7fef0;
+  --green-dark: #8ccf4b;
+  --blue-dark: #1c1f58;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  scroll-behavior: smooth;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  margin: 0px;
+  padding: 0px;
+  font-family: var(--base-font);
+  font-size: 16px;
+  background-color: var(--bg-primary);
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@media (max-width: 750px) {
+  .container {
+    max-width: 95%;
+  }
+}

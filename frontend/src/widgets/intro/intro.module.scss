@@ -1,0 +1,263 @@
+@keyframes floatPhone {
+  0% {
+    transform: translateY(0) rotate(9deg);
+  }
+  50% {
+    transform: translateY(15px) rotate(9deg);
+  }
+  100% {
+    transform: translateY(0) rotate(9deg);
+  }
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.25;
+  }
+}
+
+.intro {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 350px;
+
+  @media (max-width: 1178px) {
+    padding: 0 50px 130px 50px;
+  }
+
+  @media (max-width: 978px) {
+    padding: 0 20px 600px 20px;
+  }
+
+  @media (max-width: 678px) {
+    padding: 0 20px 500px 20px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0 20px 420px 20px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://cdn.prod.website-files.com/640f69143ec11b21d42015c6/67571e0fde6d088ec108116b_home_tissue-paper%20(1).avif');
+    background-repeat: repeat;
+    width: 100%;
+    background-size: cover;
+    object-fit: cover;
+    opacity: 1;
+    z-index: -1;
+  }
+
+  .introButton {
+    padding: 1.1rem 2.2rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+
+    @media (max-width: 1178px) {
+      padding: 1rem 2rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 978px) {
+      padding: 0.95rem 1.8rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  .introBlock {
+    margin-top: 240px;
+    display: flex;
+
+    @media (max-width: 1178px) {
+      margin-top: 140px;
+    }
+
+    @media (max-width: 978px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .introLeft {
+      max-width: 650px;
+      color: white;
+
+      .introLeftTitle {
+        font-size: 3.4rem;
+        font-weight: 700;
+        margin-bottom: 35px;
+      }
+
+      .introLeftSubtitle {
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-bottom: 30px;
+        line-height: 1.8rem;
+      }
+
+      .introLeftText {
+        font-size: 0.9rem;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 1178px) {
+        max-width: 450px;
+
+        .introLeftTitle {
+          font-size: 3rem;
+          font-weight: 600;
+          margin-bottom: 30px;
+        }
+
+        .introLeftSubtitle {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-width: 978px) {
+        max-width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .introLeftTitle {
+          font-size: 2.3rem;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+
+        .introLeftSubtitle {
+          font-size: 1.1rem;
+        }
+
+        .introLeftText {
+          font-size: 0.85rem;
+        }
+      }
+      @media (max-width: 978px) {
+        .introLeftTitle {
+          font-size: 2rem;
+          margin-bottom: 25px;
+        }
+
+        .introLeftSubtitle {
+          font-size: 1rem;
+        }
+
+        .introLeftText {
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    .introRight {
+      position: relative;
+
+      .introRightDollars {
+        position: absolute;
+        top: -70px;
+        left: 30px;
+        z-index: 1;
+
+        @media (max-width: 1178px) {
+          top: -20px;
+          left: 80px;
+          width: 420px;
+        }
+
+        @media (max-width: 978px) {
+          top: 40px;
+          left: -250px;
+          width: 500px;
+        }
+
+        @media (max-width: 687px) {
+          top: 40px;
+          left: -230px;
+          width: 460px;
+        }
+
+        @media (max-width: 500px) {
+          top: 40px;
+          left: -180px;
+          width: 360px;
+        }
+      }
+
+      .introRightPhone {
+        position: absolute;
+        top: -100px;
+        left: 150px;
+        transform: rotate(9deg);
+        object-fit: cover;
+        width: 375px;
+
+        animation: floatPhone 4.5s ease-in-out infinite;
+
+        @media (max-width: 1178px) {
+          top: -50px;
+          left: 130px;
+          width: 300px;
+        }
+
+        @media (max-width: 978px) {
+          top: 0px;
+          left: -150px;
+        }
+
+        @media (max-width: 687px) {
+          top: 10px;
+          left: -130px;
+          width: 260px;
+        }
+
+        @media (max-width: 500px) {
+          top: 20px;
+          left: -110px;
+          width: 220px;
+        }
+      }
+
+      .introRightShadow {
+        position: absolute;
+        bottom: -145px;
+        left: 160px;
+        transform: translateX(-50%);
+        width: clamp(180px, 20vw, 240px);
+        height: clamp(12px, 2vw, 18px);
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        z-index: 2;
+        transform-origin: center;
+        animation: shadowPulse 4.5s ease-in-out infinite;
+
+        @media (max-width: 1178px) {
+          bottom: -110px;
+          left: 120px;
+        }
+
+        @media (max-width: 978px) {
+          top: 490px;
+          left: -130px;
+        }
+
+        @media (max-width: 687px) {
+          top: 440px;
+          left: -130px;
+        }
+        @media (max-width: 500px) {
+          top: 390px;
+          left: -120px;
+        }
+      }
+    }
+  }
+}
