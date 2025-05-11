@@ -1,4 +1,4 @@
-@import '../../../shared/styles/base.module.scss';
+@use '../../../shared/styles/base-mixin.scss' as *;
 
 .button {
   @include flex;

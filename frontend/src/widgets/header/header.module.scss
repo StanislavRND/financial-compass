@@ -1,4 +1,4 @@
-@import '../../shared/styles/base.module.scss';
+@use '../../shared/styles/base-mixin.scss' as *;
 
 .header {
   background-color: var(--bg-accent);
@@ -43,11 +43,17 @@
 
         li {
           cursor: pointer;
+					transition: transform 0.2s ease-in;
+
+					&:hover {
+						transform: translateY(2px);
+					}
 
           a {
             transition: color 0.3s ease;
             &:hover {
               color: #c8e9ff;
+						
             }
           }
         }
