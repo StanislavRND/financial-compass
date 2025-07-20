@@ -1,0 +1,57 @@
+.fields {
+  position: relative;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 12px 10px 12px 45px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 21px 21px;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: #545bfe;
+    outline: none;
+  }
+
+  &::placeholder {
+    font-size: 0.95rem;
+  }
+}
+
+input.name {
+  background-image: url('../../assets/auth/name.svg');
+}
+input.login {
+  background-image: url('../../assets/auth/login.svg');
+}
+input.password {
+  background-image: url('../../assets/auth/password.svg');
+}
+input.invite {
+  background-image: url('../../assets/auth/handshake.svg');
+  text-transform: uppercase;
+}
+
+.errorText {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.eye {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  background-color: white;
+  font-size: 1.05rem;
+}

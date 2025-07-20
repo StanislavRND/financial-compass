@@ -1,8 +1,9 @@
 import clsx from 'clsx'
-import { Compass, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Link as ScrollLink } from 'react-scroll'
+import { Logo } from '../../shared/ui/button'
 import { Button } from '../../shared/ui/button/button'
 import { navLinks } from './config/navLinks'
 import styles from './header.module.scss'
@@ -17,12 +18,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerContainer}>
-        <Link to="/home">
-          <div className={styles.headerLogo}>
-            <Compass size={40} color="white" />
-            <div>Финансовый Компас</div>
-          </div>
-        </Link>
+        <Logo />
 
         <nav className={clsx(styles.headerNav, { [styles.open]: isOpen })}>
           <ul className={styles.headerItems}>

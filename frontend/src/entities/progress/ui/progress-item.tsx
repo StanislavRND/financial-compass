@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './progress-item.module.scss'
 
 type Props = {
@@ -8,8 +8,9 @@ type Props = {
 }
 
 export const ProgressItem = ({ title, subtitle, image }: Props) => {
+  const navigate = useNavigate()
   return (
-    <div className={styles.item}>
+    <div onClick={() => navigate('/login')} className={styles.item}>
       <Link to="">
         <img src={image} alt={title} className={styles.image} />
         <h4 className={styles.title}>{title}</h4>

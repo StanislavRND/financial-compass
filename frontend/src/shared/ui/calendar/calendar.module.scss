@@ -1,0 +1,35 @@
+.calendarPopup {
+  position: absolute;
+  top: 70px;
+  left: 82%;
+  transform: translateX(-50%);
+  z-index: 20;
+  background-color: var(--bg-dark-primary);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.mySelected {
+  background-color: var(--accent-color, #2196f3) !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+.myToday {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.myDisabled {
+  color: #666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+.myHover {
+  background-color: var(--bg-dark-secondary) !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}

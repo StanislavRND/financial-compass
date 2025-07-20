@@ -1,0 +1,17 @@
+.doughnut {
+  width: 220px;
+  height: 220px;
+  cursor: pointer;
+  position: relative;
+}
+
+.summa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-43%, -50%);
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}

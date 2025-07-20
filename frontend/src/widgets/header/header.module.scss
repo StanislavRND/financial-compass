@@ -1,4 +1,3 @@
-@use '../../shared/styles/base-mixin.scss' as *;
 
 .header {
   background-color: var(--bg-accent);
@@ -17,28 +16,18 @@
     box-sizing: border-box;
     max-width: 1270px;
     padding: 0 20px;
-    @include flex;
+    display: flex;
+		align-items: center;
     justify-content: space-between;
 
-    .headerLogo {
-      font-size: 1.35rem;
-      letter-spacing: 1px;
-      font-weight: 600;
-      line-height: 22px;
-      @include flex;
-      gap: 12px;
-
-      @media (max-width: 480px) {
-        font-size: 1.3rem;
-      }
-    }
 
     .headerNav {
-      @include flex;
+      display: flex;
       gap: 40px;
 
       .headerItems {
-        @include flex;
+        display: flex;
+				align-items: center;
         gap: 25px;
 
         li {
