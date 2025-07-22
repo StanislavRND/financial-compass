@@ -4,7 +4,7 @@
 }
 .wrapperUser {
   width: 100%;
-	min-height: 100vh;
+  min-height: 100vh;
   background-color: var(--bg-dark-primary);
   display: flex;
 }
@@ -49,12 +49,10 @@
     'chart list'
     'graph graph';
   gap: 35px;
-
 }
 
 .chart {
   grid-area: chart;
-  
 }
 
 .list {

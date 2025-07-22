@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import styles from './filter.module.scss'
 
-export const Filter = () => {
+type Props = {
+  filters: string[]
+}
+
+export const Filter = ({ filters }: Props) => {
   const [active, setActive] = useState(0)
-  const filters = ['День', 'Неделя', 'Месяц', 'Год']
   return (
     <div className={styles.filter}>
       {filters.map((el, index) => (

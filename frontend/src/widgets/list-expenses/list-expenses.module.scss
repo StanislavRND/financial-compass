@@ -1,6 +1,7 @@
 .listExpenses {
   padding: 24px;
   background-color: var(--bg-dark-secondary);
+  min-height: 380px;
   max-height: 380px;
   overflow-y: auto;
   border-radius: 20px;
@@ -9,20 +10,19 @@
 }
 
 .listExpenses:hover {
-  scrollbar-color: #666 transparent; 
+  scrollbar-color: #666 transparent;
 }
 
-
 .listExpenses::-webkit-scrollbar {
-  width: 8px; 
+  width: 8px;
 }
 
 .listExpenses::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 .listExpenses::-webkit-scrollbar-thumb {
-  background-color: #666; 
+  background-color: #666;
   border-radius: 4px;
 }
 

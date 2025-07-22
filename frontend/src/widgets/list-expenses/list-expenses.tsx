@@ -23,27 +23,6 @@ export const ListExpenses = () => {
       percent: 100,
       price: 470,
     },
-    {
-      id: 4,
-      color: 'green',
-      name: 'Еда',
-      percent: 100,
-      price: 470,
-    },
-    {
-      id: 5,
-      color: 'green',
-      name: 'Еда',
-      percent: 100,
-      price: 470,
-    },
-    {
-      id: 6,
-      color: 'green',
-      name: 'Еда',
-      percent: 100,
-      price: 470,
-    },
   ]
   return (
     <section className={styles.listExpenses}>

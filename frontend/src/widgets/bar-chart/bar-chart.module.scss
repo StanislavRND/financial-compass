@@ -1,0 +1,33 @@
+.barChart {
+  background-color: var(--bg-dark-secondary);
+  border-radius: 20px;
+  height: 382px;
+  padding: 24px 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.names {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.name {
+  display: flex;
+  color: white;
+  gap: 8px;
+  align-items: center;
+}
+
+.text {
+  font-size: 1.2rem;
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}

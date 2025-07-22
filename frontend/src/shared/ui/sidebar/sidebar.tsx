@@ -1,6 +1,7 @@
 import { Compass } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../features/auth/useAuth'
 import { logoutApi } from '../../api/auth'
 import chatIcon from '../../assets/sidebar/message-circle-more.svg'
 import expensesIcon from '../../assets/sidebar/square-minus.svg'
@@ -11,6 +12,8 @@ import styles from './sidebar.module.scss'
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const user = useAuth()
+  console.log(user)
 
   const toggleSidebar = (
     e: React.MouseEvent<HTMLElement>,
@@ -58,13 +61,16 @@ export const Sidebar = () => {
             <img src={incomeIcon} alt="Доходы" className={styles.icon} />
             <li className={`${styles.item} ${collapsedClass}`}>Доходы</li>
           </Link>
-          <Link
-            to="/user-chat"
-            className={`${styles.link} ${collapsedClass} ${location.pathname === '/user-chat' ? styles.active : ''}`}
-          >
-            <img src={chatIcon} alt="Чат" className={styles.icon} />
-            <li className={`${styles.item} ${collapsedClass}`}>Чат</li>
-          </Link>
+          {user.user?.familyId !== null && (
+            <Link
+              to="/user-chat"
+              className={`${styles.link} ${collapsedClass} ${location.pathname === '/user-chat' ? styles.active : ''}`}
+            >
+              <img src={chatIcon} alt="Чат" className={styles.icon} />
+              <li className={`${styles.item} ${collapsedClass}`}>Чат</li>
+            </Link>
+          )}
+
           <Link
             to="/user-profile"
             className={`${styles.link} ${collapsedClass} ${location.pathname === '/user-profile' ? styles.active : ''}`}

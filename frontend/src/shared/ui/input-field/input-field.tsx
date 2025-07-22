@@ -32,7 +32,7 @@ export function InputField<T extends FieldValues>({
           })}
           type={type === 'password' && isVisible ? 'text' : type}
           placeholder={placeholder}
-          className={clsx(styles[name as string], error && styles.error)}
+          className={clsx(styles.input, styles[name as string], error && styles.error)}
         />
         {type === 'password' && toggleVisible && (
           <button type="button" className={styles.eye} onClick={toggleVisible}>

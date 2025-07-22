@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { getCurrentUser } from '../../shared/api/auth'
-import { UserProps } from '../../shared/types/user'
+import { User } from '../../shared/types/user'
 
 export function useAuth() {
-  const [user, setUser] = useState<UserProps | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

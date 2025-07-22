@@ -1,5 +1,6 @@
 import styles from '../shared/styles/global.module.scss'
 import { Sidebar } from '../shared/ui/sidebar/sidebar'
+import { BarChart } from '../widgets/bar-chart'
 import { ListExpenses } from '../widgets/list-expenses'
 import { PiaChartExpenses } from '../widgets/pia-chart-expenses'
 
@@ -15,7 +16,7 @@ export const Expenses = () => {
           <ListExpenses />
         </div>
         <div className={styles.graph}>
-          <PiaChartExpenses />
+          <BarChart />
         </div>
       </section>
     </div>

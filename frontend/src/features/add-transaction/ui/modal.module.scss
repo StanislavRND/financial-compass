@@ -1,0 +1,92 @@
+.form {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blockInput {
+  display: flex;
+  gap: 10px;
+}
+
+.sum {
+  width: 150px;
+  height: 35px;
+  outline: none;
+  text-align: center;
+  background-color: var(--bg-dark-primary);
+  border: none;
+  border-bottom: 2px solid white;
+  caret-color: white;
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 500;
+  transition: border-bottom 0.3s ease;
+
+  &:focus {
+    border-bottom: 2px solid var(--bg-light-blue);
+  }
+
+  &::placeholder {
+    color: white;
+    font-size: 2rem;
+  }
+}
+
+.errorBorder {
+  border-bottom: 2px solid rgb(250, 54, 54) !important;
+}
+
+.error {
+  margin-top: 15px;
+  color: rgb(250, 54, 54);
+}
+
+.rub {
+  color: var(--bg-light-blue);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.dateWrapper {
+  margin-top: 30px;
+  position: relative;
+}
+
+.dateInput {
+  border: none;
+  outline: none;
+  height: 35px;
+  background-color: var(--bg-dark-primary);
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 1.2rem;
+  width: 170px;
+}
+
+.calendarIcon {
+  background-color: var(--bg-dark-primary);
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translate(-50%, -50%);
+  font-size: 1.1rem;
+}
+
+.save {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 50px;
+  background-color: var(--bg-light-blue);
+  transition: background-color 0.3s ease;
+  color: #000;
+
+  &:hover {
+    background-color: #2eb1bf;
+  }
+}
