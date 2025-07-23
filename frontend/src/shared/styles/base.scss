@@ -1,12 +1,41 @@
 :root {
+  --bg-primary: #545bfe;
+  --bg-secondary: #aee865;
+  --bg-accent: #1c1f58;
+  /* ===== Текст ===== */
+  --text-primary: #fdf9ed;
+  --text-secondary: #fdf3d2;
+  --text-accent: #aee865;
+
+  /* ===== Кнопки ===== */
+  --btn-primary: #545bfe;
+  --btn-primary-hover: #3e49e6;
+  --btn-success: #aee865;
+  --btn-success-hover: #8ccf4b;
+
+  /* ===== Детали ===== */
+  --border-color: #1c1f58;
+  --highlight: #fdf3d2;
+  --chart-green: #41d298;
+  --chart-red: #f87171;
+  --gold: #facc15;
+
+  /* ===== Тени ===== */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 6px 10px rgba(0, 0, 0, 0.3);
+
   /* ===== Шрифт ===== */
   --base-font: 'Montserrat';
 
-	--bg-light-blue: #3cddef
+  /* ===== Дополнительные зелёные и синие оттенки ===== */
+  --blue-light: #c7fef0;
+  --green-dark: #8ccf4b;
+  --blue-dark: #1c1f58;
 
   /* ===== Темные цвета ===== */
   --bg-dark-primary: #1d1f21;
   --bg-dark-secondary: #2a2c2f;
+  --bg-dark-card: #4a5568;
 }
 
 *,
