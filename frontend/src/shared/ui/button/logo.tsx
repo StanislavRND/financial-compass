@@ -1,7 +1,7 @@
+import clsx from 'clsx'
 import { Compass } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './button.module.scss'
-import clsx from 'clsx'
 
 type LogoProps = {
   className?: string

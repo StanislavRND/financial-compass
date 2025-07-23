@@ -10,7 +10,7 @@ export const createFamily = async (userId: number) => {
   return res.data
 }
 
-export const getInfoFamilyForUser = async (userId: number) => {
+export const getInfoFamilyForUser = async () => {
   const res = await axiosBase.get('/family')
   return res.data
 }

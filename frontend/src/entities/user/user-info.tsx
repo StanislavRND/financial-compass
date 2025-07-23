@@ -1,4 +1,5 @@
 import { useAuth } from '../../features/auth/useAuth'
+import { formatDate } from '../../shared/utils/formatDate'
 import styles from './user-info.module.scss'
 
 export const UserInfo = () => {
@@ -6,18 +7,12 @@ export const UserInfo = () => {
 
   if (!user) return null
 
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr)
-    const day = String(date.getDate()).padStart(2, '0')
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const year = date.getFullYear()
-    return `${day}.${month}.${year}`
-  }
-
   return (
     <>
       <div className={styles.userProfile__info}>
-        <div className={styles.userProfile__avatar}>{user.name.charAt(0).toUpperCase()}</div>
+        <div className={styles.userProfile__avatar}>
+          {user.name ? user.name.charAt(0).toUpperCase() : '?'}
+        </div>
         <div>
           <div className={styles.userProfile__name}>{user.name}</div>
           <h2 className={styles.userProfile__subtitle}>Личный профиль</h2>

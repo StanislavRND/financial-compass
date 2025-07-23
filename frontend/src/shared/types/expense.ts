@@ -1,3 +1,5 @@
+import { Category } from './category'
+
 export interface Expense {
   id: number
   sum: number
@@ -5,4 +7,5 @@ export interface Expense {
   date: string
   userId: number
   familyId: number | null
+  category: Category
 }

@@ -27,7 +27,7 @@ export const useAuthForm = <M extends Modes>(mode: M) => {
     try {
       if (mode === 'login') {
         await loginApi(data as LoginForm)
-        navigate('/user-profile')
+        navigate('/user-expenses')
       } else {
         await registerApi(data as RegisterForm)
         navigate('/login')

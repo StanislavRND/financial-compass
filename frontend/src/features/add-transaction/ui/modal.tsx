@@ -4,6 +4,7 @@ import { Controller } from 'react-hook-form'
 import { Button } from '../../../shared/ui/button'
 import { Calendar } from '../../../shared/ui/calendar/calendar'
 import { ModalLayout } from '../../../shared/ui/modal/modal-layout'
+import { formatDateInput } from '../../../shared/utils/formatDateInput'
 import { useAuth } from '../../auth/useAuth'
 import { useAddTransactionForm } from '../model/useAddTransaction'
 import styles from './modal.module.scss'
@@ -23,9 +24,7 @@ export const Modal = ({ onClose }: Props) => {
     showCalendar,
     setShowCalendar,
     handleDateSelect,
-    formatDateInput,
     setValue,
-    watch,
     control,
     isLoading,
   } = useAddTransactionForm({ userId: user?.id ?? 0, familyId: user?.familyId ?? null, onClose })

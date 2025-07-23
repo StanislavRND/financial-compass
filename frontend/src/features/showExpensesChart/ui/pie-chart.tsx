@@ -4,14 +4,22 @@ import styles from './pie-chart.module.scss'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-export const PieChart = () => {
-  const data = {
-    labels: ['День', 'Неделя', 'Месяц'],
+type PropsData = {
+  labels?: string[]
+  data?: number[]
+  colors?: string[]
+}
+
+export const PieChart = ({ labels = [], data = [], colors = [] }: PropsData) => {
+  const isEmpty = !data.length || data.every((v) => v === 0)
+
+  const chartData = {
+    labels: isEmpty ? ['Нет данных'] : labels,
     datasets: [
       {
-        data: [10, 20, 30],
-        backgroundColor: ['red', 'blue', 'green'],
-        borderWidth: 6,
+        data: isEmpty ? [1] : data,
+        backgroundColor: isEmpty ? ['#ccc'] : colors,
+        borderWidth: 4,
         borderColor: '#2a2c2f',
         borderRadius: 5,
       },
@@ -24,14 +32,21 @@ export const PieChart = () => {
     cutout: '60%',
     plugins: {
       legend: { display: false },
-      tooltip: { enabled: true },
+      tooltip: { enabled: !isEmpty },
     },
   }
 
+  const sum = data.reduce((acc, val) => acc + val, 0)
+
   return (
     <div className={styles.doughnut}>
-      <Doughnut data={data} options={options} />
-      <div className={styles.summa}>20000 ₽</div>
+      <Doughnut data={chartData} options={options} />
+
+      {isEmpty ? (
+        <div className={`${styles.empty} ${styles.summa}`}>Расходов не было</div>
+      ) : (
+        <div className={styles.summa}>{sum} ₽</div>
+      )}
     </div>
   )
 }

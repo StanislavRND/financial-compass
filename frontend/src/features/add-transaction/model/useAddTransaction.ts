@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { formatDate } from '../../../shared/utils/formatDate'
 import { useCreateExpenseMutation } from '../api/addTransactionApi'
 
 type Inputs = {
   sum: string
   date: string
-  categoryId: number | null
+  categoryId: number
 }
 
 interface UseAddTransactionFormProps {
@@ -33,30 +34,9 @@ export const useAddTransactionForm = ({
   } = useForm<Inputs>({ mode: 'onChange' })
 
   useEffect(() => {
-    const today = new Date()
-    const day = String(today.getDate()).padStart(2, '0')
-    const month = String(today.getMonth() + 1).padStart(2, '0')
-    const year = today.getFullYear()
-    const todayFormatted = `${day}.${month}.${year}`
+    const todayFormatted = formatDate(new Date())
     setValue('date', todayFormatted)
   }, [setValue])
-
-  const formatDateInput = (value: string) => {
-    const numbers = value.replace(/\D/g, '')
-    let formatted = ''
-
-    if (numbers.length <= 2) {
-      formatted = numbers
-    } else if (numbers.length <= 4) {
-      formatted = numbers.slice(0, 2) + '.' + numbers.slice(2)
-    } else if (numbers.length <= 8) {
-      formatted = numbers.slice(0, 2) + '.' + numbers.slice(2, 4) + '.' + numbers.slice(4, 8)
-    } else {
-      formatted = numbers.slice(0, 2) + '.' + numbers.slice(2, 4) + '.' + numbers.slice(4, 8)
-    }
-
-    return formatted
-  }
 
   const handleDateSelect = (date: Date) => {
     const formatted = date.toLocaleDateString('ru-RU')
@@ -89,7 +69,6 @@ export const useAddTransactionForm = ({
     showCalendar,
     setShowCalendar,
     handleDateSelect,
-    formatDateInput,
     setValue,
     watch,
     control,

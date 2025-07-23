@@ -1,21 +1,28 @@
-import { useState } from 'react'
+import { FilterItem, FilterValue } from '../../types/filter'
 import styles from './filter.module.scss'
 
 type Props = {
-  filters: string[]
+  filters: FilterItem[]
+  selectedFilter: FilterValue
+  onChange: (value: FilterValue) => void
 }
 
-export const Filter = ({ filters }: Props) => {
-  const [active, setActive] = useState(0)
+export const Filter = ({ filters, onChange, selectedFilter }: Props) => {
+  const activeIndex = filters.findIndex((f) => f.value === selectedFilter)
+
+  const handleClick = (index: number) => {
+    onChange(filters[index].value)
+  }
+
   return (
     <div className={styles.filter}>
       {filters.map((el, index) => (
         <div
-          onClick={() => setActive(index)}
+          onClick={() => handleClick(index)}
           key={index}
-          className={`${styles.name} ${active === index ? styles.active : ''}`}
+          className={`${styles.name} ${activeIndex === index ? styles.active : ''}`}
         >
-          {el}
+          {el.label}
         </div>
       ))}
     </div>

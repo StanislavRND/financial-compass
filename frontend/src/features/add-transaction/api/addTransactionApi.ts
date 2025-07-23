@@ -1,13 +1,7 @@
 import { baseApi } from '../../../shared/api/baseApi'
-import { Expense } from '../model/types'
+import { Expense } from '../../../shared/types/expense'
 
-interface CreateExpenseDto {
-  sum: number
-  categoryId: number | null
-  date: string
-  userId: number
-  familyId: number | null
-}
+type CreateExpenseDto = Omit<Expense, 'id' | 'category'>
 
 export const expensesApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

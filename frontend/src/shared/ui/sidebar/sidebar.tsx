@@ -13,7 +13,6 @@ import styles from './sidebar.module.scss'
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const user = useAuth()
-  console.log(user)
 
   const toggleSidebar = (
     e: React.MouseEvent<HTMLElement>,

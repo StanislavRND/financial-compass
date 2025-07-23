@@ -9,7 +9,6 @@ import {
 } from 'chart.js'
 import 'chartjs-adapter-date-fns'
 import { BarChartUI } from '../../features/showStatisticsChart/ui/bar-chart'
-import { Filter } from '../../shared/ui/filter/filter'
 import styles from './bar-chart.module.scss'
 
 ChartJS.register(TimeScale, LinearScale, BarElement, Tooltip, Legend, CategoryScale)
@@ -41,7 +40,7 @@ export const BarChart = () => {
 
   return (
     <section className={styles.barChart}>
-      <Filter filters={filters} />
+      {/* <Filter filters={filters} /> */}
       <BarChartUI />
       <div className={styles.names}>
         {names.map((el) => (
