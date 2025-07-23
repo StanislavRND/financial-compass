@@ -8,13 +8,13 @@ import {
   Tooltip,
 } from 'chart.js'
 import 'chartjs-adapter-date-fns'
-import { BarChartUI } from '../../features/showStatisticsChart/ui/bar-chart'
+import { BarChartUI } from '../../features/show-statistics-chart/ui/bar-chart'
 import styles from './bar-chart.module.scss'
 
 ChartJS.register(TimeScale, LinearScale, BarElement, Tooltip, Legend, CategoryScale)
 
 export const BarChart = () => {
-  const filters = ['по годам', 'по месяцам', 'по неделям', 'по дням']
+  // const filters = ['по годам', 'по месяцам', 'по неделям', 'по дням']
   const names = [
     {
       id: 1,

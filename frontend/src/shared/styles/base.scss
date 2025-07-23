@@ -2,11 +2,13 @@
   /* ===== Шрифт ===== */
   --base-font: 'Montserrat';
 
+	--bg-light-blue: #3cddef;
+
   /* ===== Темные цвета ===== */
   --bg-dark-primary: #1d1f21;
   --bg-dark-secondary: #2a2c2f;
 }
-
+	
 *,
 *::before,
 *::after {

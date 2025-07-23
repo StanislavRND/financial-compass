@@ -32,7 +32,7 @@ export const useFamily = () => {
   const fetchFamily = async () => {
     if (!userId) return
     try {
-      const res = await getInfoFamilyForUser(userId)
+      const res = await getInfoFamilyForUser()
       setFamily(res)
     } catch (e) {
       console.log('Ошибка получения семьи')
