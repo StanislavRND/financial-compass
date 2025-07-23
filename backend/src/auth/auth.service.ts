@@ -45,7 +45,7 @@ export class AuthService {
   async login(login: string, password: string) {
     const user = await this.prisma.user.findUnique({ where: { login } });
 
-    if (!user || !(await bcrypt.compare(password, user.password as string))) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException("Неверный логин или пароль");
     }
 
@@ -57,7 +57,7 @@ export class AuthService {
     if (!userId) return null;
 
     const user = await this.prisma.user.findUnique({
-      where: { id: Number(userId) },
+      where: { id: userId },
     });
     return user
       ? {

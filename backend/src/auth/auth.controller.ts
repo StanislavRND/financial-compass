@@ -79,6 +79,7 @@ export class AuthController {
 
   @Get("me")
   async getProfile(@Req() req: Request) {
+    console.log("Cookies:", req.cookies);
     const user = await this.authService.getCurrentUser(req);
     if (!user) throw new UnauthorizedException();
     return user;
