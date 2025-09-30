@@ -1,5 +1,5 @@
 import { baseApi } from '../../../shared/api/baseApi'
-import { Expense } from '../../../shared/types/expense'
+import { Expense } from '../../../shared/types/base-transaction'
 
 type CreateExpenseDto = Omit<Expense, 'id' | 'category'>
 

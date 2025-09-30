@@ -10,9 +10,9 @@ import {
   Post,
   Query,
 } from "@nestjs/common";
-import { ExpenseService } from "./expense.service";
+import { IncomeService } from "./income.service";
 
-class CreateExpenseDto {
+class CreateIncomeDto {
   sum!: number;
   categoryId!: number;
   date!: string;
@@ -20,38 +20,39 @@ class CreateExpenseDto {
   familyId?: number;
 }
 
-@Controller("expense")
-export class ExpenseController {
-  constructor(private readonly expenseService: ExpenseService) {}
+@Controller("income")
+export class IncomeController {
+  constructor(private readonly incomeService: IncomeService) {}
 
   @Post()
-  createExpense(@Body() createExpenseDto: CreateExpenseDto) {
-    return this.expenseService.createExpense(createExpenseDto);
+  createIncome(@Body() createIncomeDto: CreateIncomeDto) {
+    return this.incomeService.createIncome(createIncomeDto);
   }
 
   @Get()
-  getExpenses(
+  getIncome(
     @Query("userId") userId: string,
     @Query("familyId") familyId: string | null,
     @Query("filter") filter: "day" | "week" | "month" | "year" = "day",
     @Query("date") dateStr?: string
   ) {
     const date = dateStr ? new Date(dateStr) : undefined;
-    return this.expenseService.getExpensesByFilter(
+    return this.incomeService.getIncomeByFilter(
       +userId,
       familyId ? +familyId : null,
       filter,
       date
     );
   }
+
   @Get("last")
-  getLastExpenses(
+  getLastIncome(
     @Query("userId") userId: string,
     @Query("familyId") familyId: string | null,
     @Query("filter") filter: "day" | "week" | "month" | "year" = "day",
     @Query("n") n: string = "5"
   ) {
-    return this.expenseService.getLastNExpenses(
+    return this.incomeService.getLastNIncome(
       +userId,
       familyId ? +familyId : null,
       filter,
@@ -61,7 +62,7 @@ export class ExpenseController {
 
   @Delete(":id")
   @HttpCode(HttpStatus.NO_CONTENT)
-  async deleteExpense(@Param("id", ParseIntPipe) id: number): Promise<void> {
-    await this.expenseService.deleteExpense(id);
+  async deleteIncome(@Param("id", ParseIntPipe) id: number): Promise<void> {
+    await this.incomeService.deleteIncome(id);
   }
 }

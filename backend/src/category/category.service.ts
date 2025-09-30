@@ -5,7 +5,11 @@ import { PrismaService } from "src/prisma.service";
 export class CategoryService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getCategories() {
-    return this.prisma.category.findMany();
+  async getIncomeCategories() {
+    return this.prisma.categoryIncome.findMany();
+  }
+
+  async getExpenseCategories() {
+    return this.prisma.categoryExpense.findMany();
   }
 }

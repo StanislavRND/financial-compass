@@ -1,24 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { getCurrentUser } from '../../shared/api/auth'
 import { User } from '../../shared/types/user'
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+  const { data: user, isLoading: loading } = useQuery<User>({
+    queryKey: ['currentUser'],
+    queryFn: getCurrentUser,
+    staleTime: 1000 * 60 * 5,
+    retry: false,
+  })
 
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const res = await getCurrentUser()
-        setUser(res)
-      } catch {
-        setUser(null)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchCurrentUser()
-  }, [])
-
-  return { user, loading }
+  return { user: user ?? null, loading }
 }

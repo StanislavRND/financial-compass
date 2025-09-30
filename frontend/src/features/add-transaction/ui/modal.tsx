@@ -6,14 +6,16 @@ import { Calendar } from '../../../shared/ui/calendar/calendar'
 import { ModalLayout } from '../../../shared/ui/modal/modal-layout'
 import { formatDateInput } from '../../../shared/utils/formatDateInput'
 import { useAuth } from '../../auth/useAuth'
-import { useAddTransactionForm } from '../model/useAddTransaction'
+import { TransactionType, useAddTransactionForm } from '../model/useAddTransaction'
 import styles from './modal.module.scss'
 
 type Props = {
   onClose: () => void
+  type: TransactionType
+  typeCategories: 'income' | 'expense'
 }
 
-export const Modal = ({ onClose }: Props) => {
+export const Modal = ({ onClose, type, typeCategories }: Props) => {
   const { user } = useAuth()
   const {
     register,
@@ -27,7 +29,12 @@ export const Modal = ({ onClose }: Props) => {
     setValue,
     control,
     isLoading,
-  } = useAddTransactionForm({ userId: user?.id ?? 0, familyId: user?.familyId ?? null, onClose })
+  } = useAddTransactionForm({
+    userId: user?.id ?? 0,
+    familyId: user?.familyId ?? null,
+    type,
+    onClose,
+  })
 
   return (
     <ModalLayout onClose={onClose}>
@@ -54,6 +61,7 @@ export const Modal = ({ onClose }: Props) => {
           render={({ field, fieldState }) => (
             <>
               <CategoriesList
+                type={typeCategories}
                 selectedCategoryId={field.value}
                 onSelectCategory={(id: number) => field.onChange(id)}
               />

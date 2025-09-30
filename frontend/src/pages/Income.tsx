@@ -3,9 +3,9 @@ import styles from '../shared/styles/global.module.scss'
 import { Sidebar } from '../shared/ui/sidebar/sidebar'
 import { BarChart } from '../widgets/bar-chart'
 import { ListTransactions } from '../widgets/list-transactions'
-import { PiaChartExpenses } from '../widgets/pia-chart-expenses'
+import { PiaChartIncomes } from '../widgets/pia-chart-incomes'
 
-export const Expenses = () => {
+export const Income = () => {
   const [filter, setFilter] = useState<'day' | 'week' | 'month' | 'year'>('day')
 
   return (
@@ -13,10 +13,10 @@ export const Expenses = () => {
       <Sidebar />
       <section className={styles.wrapperExpenses}>
         <div className={styles.chart}>
-          <PiaChartExpenses filter={filter} setFilter={setFilter} />
+          <PiaChartIncomes filter={filter} setFilter={setFilter} />
         </div>
         <div className={styles.list}>
-          <ListTransactions type={'expense'} filter={filter} />
+          <ListTransactions type={'income'} filter={filter} />
         </div>
         <div className={styles.graph}>
           <BarChart setFilter={setFilter} filter={filter} />

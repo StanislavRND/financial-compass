@@ -1,3 +1,6 @@
+export * from './Expenses'
 export * from './LandingPage'
 export * from './Login'
 export * from './Register'
+export * from './UserProfile'
+export * from './Income'

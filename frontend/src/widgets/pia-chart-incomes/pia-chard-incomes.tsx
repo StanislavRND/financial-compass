@@ -6,13 +6,13 @@ import { Modal } from '../../features/add-transaction/ui/modal'
 import { useAuth } from '../../features/auth/useAuth'
 import { getChartData } from '../../features/show-expenses-chart/model/chartData'
 import { PieChart } from '../../features/show-expenses-chart/ui'
-import { useGetExpensesQuery } from '../../shared/api/expenses'
+import { useGetIncomeQuery } from '../../shared/api/income'
 import { selectDate, setDate } from '../../shared/model/date'
 import { FilterItem } from '../../shared/types/filter'
 import { CreateExpense } from '../../shared/ui/button/createExpense'
 import { Calendar } from '../../shared/ui/calendar/calendar'
 import { Filter } from '../../shared/ui/filter/filter'
-import styles from './pia-chart-expenses.module.scss'
+import styles from './pia-chart-incomes.module.scss'
 
 type Props = {
   filter: 'day' | 'week' | 'month' | 'year'
@@ -26,7 +26,7 @@ const filters: FilterItem[] = [
   { label: 'Год', value: 'year' },
 ]
 
-export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
+export const PiaChartIncomes = ({ filter, setFilter }: Props) => {
   const selected = useSelector(selectDate)
   const selectedDate = new Date(selected)
 
@@ -37,19 +37,11 @@ export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
 
   const { user } = useAuth()
 
-  const queryArgs = useMemo(() => {
-    if (!user) return skipToken
-    return {
-      userId: user.id,
-      familyId: user.familyId ?? null,
-      filter,
-      date: new Date(selected).toISOString(),
-    }
-  }, [user, filter, selected])
-
-  const { data: expenses } = useGetExpensesQuery(queryArgs, {
-    refetchOnMountOrArgChange: false,
-  })
+  const { data: expenses } = useGetIncomeQuery(
+    user
+      ? { userId: user.id, familyId: user.familyId ?? null, filter, date: selected.toString() }
+      : skipToken,
+  )
 
   const chartData = useMemo(() => getChartData(expenses), [expenses])
 
@@ -95,7 +87,7 @@ export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
 
       {showModal &&
         createPortal(
-          <Modal typeCategories="expense" type="expense" onClose={() => setShowModal(false)} />,
+          <Modal typeCategories="income" type="income" onClose={() => setShowModal(false)} />,
           document.body,
         )}
     </div>

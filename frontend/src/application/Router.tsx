@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { LandingPage, Login, Register } from '../pages'
+import { Income, LandingPage, Login, Register } from '../pages'
 import { Expenses } from '../pages/Expenses'
 import { UserProfile } from '../pages/UserProfile'
 import '../shared/styles/base.scss'
@@ -25,6 +25,14 @@ export const AppRouter = () => {
         element={
           <ProtectedRoute>
             <Expenses />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/user-income"
+        element={
+          <ProtectedRoute>
+            <Income />
           </ProtectedRoute>
         }
       />

@@ -1,14 +1,18 @@
+import { useGetExpenseCategoriesQuery } from '../api/categoriesApiExpense'
+import { useGetIncomeCategoriesQuery } from '../api/categoriesApiIncome'
 import styles from './categories-list.module.scss'
 
-import { useGetCategoriesQuery } from '../api/categoriesApi'
-
 type Props = {
-  selectedCategoryId: number | null | undefined
+  selectedCategoryId: number | null
   onSelectCategory: (id: number) => void
+  type: 'expense' | 'income'
 }
 
-export const CategoriesList = ({ selectedCategoryId, onSelectCategory }: Props) => {
-  const { data: categories = [], isLoading } = useGetCategoriesQuery()
+export const CategoriesList = ({ selectedCategoryId, onSelectCategory, type }: Props) => {
+  const expenseQuery = useGetExpenseCategoriesQuery()
+  const incomeQuery = useGetIncomeCategoriesQuery()
+
+  const { data: categories = [], isLoading } = type === 'expense' ? expenseQuery : incomeQuery
 
   if (isLoading) return <div>Загрузка...</div>
 

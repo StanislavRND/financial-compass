@@ -1,4 +1,4 @@
-import { Expense } from '../../../shared/types/expense'
+import { Expense } from '../../../shared/types/base-transaction'
 
 export interface ChartData {
   labels: string[]

@@ -1,45 +1,56 @@
 import { skipToken } from '@reduxjs/toolkit/query'
-import { Sticker } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useTransactionsQuery } from '../../entities/transactions/api/useTransactions'
 import { useAuth } from '../../features/auth/useAuth'
-import { useGetExpensesQuery } from '../../shared/api/expenses'
 import { selectDate } from '../../shared/model/date'
 import { getPercent } from '../../shared/utils/getPepsent'
 import { CategoryListModal } from './category-list-modal'
-import styles from './list-expenses.module.scss'
+import styles from './list-transactions.module.scss'
 import { useExpensesByCategory } from './model/expensesBySelectedCategory'
 import { groupExpensesByCategory } from './model/groupedExpenses'
 
-export const ListExpenses = ({ filter }: { filter: 'day' | 'week' | 'month' | 'year' }) => {
-  const selected = useSelector(selectDate)
+type Props = {
+  type: 'expense' | 'income'
+  filter: 'day' | 'week' | 'month' | 'year'
+}
 
+export const ListTransactions = ({ type, filter }: Props) => {
+  const selected = useSelector(selectDate)
+  const { user } = useAuth()
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null)
 
-  const { user } = useAuth()
+  const queryArgs = useMemo(() => {
+    if (!user) return skipToken
+    return {
+      type,
+      userId: user.id,
+      familyId: user.familyId ?? null,
+      filter,
+      date: new Date(selected).toISOString(),
+    }
+  }, [user, type, filter, selected])
 
-  const { data: expenses } = useGetExpensesQuery(
-    user ? { userId: user.id, familyId: user.familyId ?? null, filter, date: selected } : skipToken,
-  )
+  const { data: transactions, isLoading } = useTransactionsQuery(queryArgs)
 
-  const groupedExpenses = useMemo(() => groupExpensesByCategory(expenses), [expenses])
-  const expensesBySelectedCategory = useExpensesByCategory(expenses, selectedCategoryId)
+  const groupedTransactions = useMemo(() => groupExpensesByCategory(transactions), [transactions])
+
+  const transactionsBySelectedCategory = useExpensesByCategory(transactions, selectedCategoryId)
 
   const selectedCategory = useMemo(() => {
     if (selectedCategoryId === null) return null
-    return groupedExpenses.find((el) => el.category.id === selectedCategoryId)?.category || null
-  }, [selectedCategoryId, groupedExpenses])
+    return groupedTransactions.find((el) => el.category.id === selectedCategoryId)?.category || null
+  }, [selectedCategoryId, groupedTransactions])
 
-  if (!groupedExpenses || groupedExpenses.length === 0) {
+  if (isLoading) return <div>Загрузка...</div>
+
+  if (!groupedTransactions || groupedTransactions.length === 0) {
     return (
       <section className={styles.listExpenses}>
         <div className={styles.emptyBlock}>
-          <div className={styles.sticker}>
-            <Sticker />
-          </div>
           <div className={styles.emptyText}>
             Пока что тишина — <br />
-            расходов за этот период не найдено.
+            {type === 'expense' ? 'расходов' : 'доходов'} за этот период не найдено.
           </div>
         </div>
       </section>
@@ -49,7 +60,7 @@ export const ListExpenses = ({ filter }: { filter: 'day' | 'week' | 'month' | 'y
   return (
     <section className={styles.listExpenses}>
       <div className={styles.list}>
-        {(groupedExpenses ?? []).map((el, index) => (
+        {groupedTransactions.map((el, index) => (
           <div
             key={index}
             className={styles.item}
@@ -61,7 +72,7 @@ export const ListExpenses = ({ filter }: { filter: 'day' | 'week' | 'month' | 'y
               <div className={styles.name}>{el.category.name}</div>
             </div>
             <div className={styles.right}>
-              <div className={styles.percent}>{getPercent(el.sum, expenses ?? [])} %</div>
+              <div className={styles.percent}>{getPercent(el.sum, transactions ?? [])} %</div>
               <div className={styles.price}>{el.sum} ₽</div>
             </div>
           </div>
@@ -70,8 +81,9 @@ export const ListExpenses = ({ filter }: { filter: 'day' | 'week' | 'month' | 'y
 
       {selectedCategory && (
         <CategoryListModal
-          expensesBySelectedCategory={expensesBySelectedCategory}
+          transactionsBySelectedCategory={transactionsBySelectedCategory}
           setSelectedCategoryId={setSelectedCategoryId}
+          type={type}
         />
       )}
     </section>

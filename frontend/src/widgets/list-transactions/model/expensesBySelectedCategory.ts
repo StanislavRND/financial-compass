@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Expense } from '../../../shared/types/expense'
+import { Expense } from '../../../shared/types/base-transaction'
 
 export const useExpensesByCategory = (
   expenses: Expense[] | undefined,

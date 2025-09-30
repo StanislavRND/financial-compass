@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { formatDate } from '../../../shared/utils/formatDate'
+import { useCreateIncomesMutation } from '../api/addIncomesApi'
 import { useCreateExpenseMutation } from '../api/addTransactionApi'
 
 type Inputs = {
@@ -9,18 +10,21 @@ type Inputs = {
   categoryId: number
 }
 
+export type TransactionType = 'expense' | 'income'
+
 interface UseAddTransactionFormProps {
   userId: number
   familyId: number | null
+  type: TransactionType
   onClose: () => void
 }
 
 export const useAddTransactionForm = ({
   userId,
   familyId,
+  type,
   onClose,
 }: UseAddTransactionFormProps) => {
-  const [createExpense, { isLoading }] = useCreateExpenseMutation()
   const [selected, setSelected] = useState<Date>(new Date())
   const [showCalendar, setShowCalendar] = useState(false)
 
@@ -33,9 +37,14 @@ export const useAddTransactionForm = ({
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onChange' })
 
+  const [createExpense, expenseMeta] = useCreateExpenseMutation()
+  const [createIncome, incomeMeta] = useCreateIncomesMutation()
+
+  const mutation = type === 'expense' ? createExpense : createIncome
+  const isLoading = type === 'expense' ? expenseMeta.isLoading : incomeMeta.isLoading
+
   useEffect(() => {
-    const todayFormatted = formatDate(new Date())
-    setValue('date', todayFormatted)
+    setValue('date', formatDate(new Date()))
   }, [setValue])
 
   const handleDateSelect = (date: Date) => {
@@ -46,18 +55,14 @@ export const useAddTransactionForm = ({
   }
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      await createExpense({
-        sum: Number(data.sum),
-        categoryId: data.categoryId,
-        date: data.date,
-        userId,
-        familyId,
-      }).unwrap()
-      onClose()
-    } catch (error) {
-      console.log(error)
-    }
+    await mutation({
+      sum: Number(data.sum),
+      categoryId: data.categoryId,
+      date: data.date,
+      userId,
+      familyId,
+    }).unwrap()
+    onClose()
   }
 
   return {

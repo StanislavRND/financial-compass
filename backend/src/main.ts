@@ -7,7 +7,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: "https://financial-compass-ruddy.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true,
   });
 

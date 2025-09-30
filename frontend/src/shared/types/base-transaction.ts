@@ -1,6 +1,6 @@
 import { Category } from './category'
 
-export interface Expense {
+interface BaseTransaction {
   id: number
   sum: number
   categoryId: number
@@ -9,3 +9,6 @@ export interface Expense {
   familyId: number | null
   category: Category
 }
+
+export type Expense = BaseTransaction
+export type Income = BaseTransaction

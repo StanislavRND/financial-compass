@@ -15,7 +15,7 @@ import {
 } from "date-fns";
 import { PrismaService } from "src/prisma.service";
 
-interface CreateExpenseDto {
+interface CreateIncomeDto {
   sum: number;
   categoryId: number;
   date: string;
@@ -39,24 +39,24 @@ function parseDateFromString(dateStr: string): Date {
 }
 
 @Injectable()
-export class ExpenseService {
+export class IncomeService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createExpense(expense: CreateExpenseDto) {
-    const date = parseDateFromString(expense.date);
+  async createIncome(income: CreateIncomeDto) {
+    const date = parseDateFromString(income.date);
 
     const data = {
-      sum: expense.sum,
+      sum: income.sum,
       date,
-      userId: expense.userId,
-      familyId: expense.familyId ?? null,
-      categoryId: expense.categoryId,
+      userId: income.userId,
+      familyId: income.familyId ?? null,
+      categoryId: income.categoryId,
     };
 
-    return this.prisma.expense.create({ data });
+    return this.prisma.income.create({ data });
   }
 
-  async getExpensesByFilter(
+  async getIncomeByFilter(
     userId: number,
     familyId: number | null,
     filter: "day" | "week" | "month" | "year" = "day",
@@ -89,7 +89,7 @@ export class ExpenseService {
       ? { familyId, date: dateFilter }
       : { userId, date: dateFilter };
 
-    return this.prisma.expense.findMany({
+    return this.prisma.income.findMany({
       where: whereCondition,
       orderBy: { date: "desc" },
       include: {
@@ -104,7 +104,7 @@ export class ExpenseService {
     });
   }
 
-  async getLastNExpenses(
+  async getLastNIncome(
     userId: number,
     familyId: number | null,
     filter: "day" | "week" | "month" | "year" = "day",
@@ -142,27 +142,21 @@ export class ExpenseService {
       }
     }
 
-    // Получаем все расходы за эти диапазоны
-    const allExpenses = await Promise.all(
+    const allIncome = await Promise.all(
       ranges.map((range) =>
-        this.prisma.expense.findMany({
+        this.prisma.income.findMany({
           where: familyId ? { familyId, date: range } : { userId, date: range },
           include: {
-            category: {
-              select: { id: true, name: true, color: true },
-            },
+            category: { select: { id: true, name: true, color: true } },
           },
         })
       )
     );
 
-    // Возвращаем массив массивов (каждый элемент — данные за один день/неделю/месяц/год)
-    return allExpenses;
+    return allIncome;
   }
 
-  async deleteExpense(id: number) {
-    await this.prisma.expense.delete({
-      where: { id },
-    });
+  async deleteIncome(id: number) {
+    await this.prisma.income.delete({ where: { id } });
   }
 }

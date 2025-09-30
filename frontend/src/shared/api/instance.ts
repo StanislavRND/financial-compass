@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosBase = axios.create({
-  baseURL: 'https://financial-compass-5i55.onrender.com/api',
+  baseURL: 'http://localhost:3000/api',
   withCredentials: true,
 })
 

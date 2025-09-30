@@ -1,4 +1,4 @@
-import { Expense } from '../types/expense'
+import { Expense } from '../types/base-transaction'
 import { baseApi } from './baseApi'
 
 export const expensesApi = baseApi.injectEndpoints({
@@ -18,6 +18,19 @@ export const expensesApi = baseApi.injectEndpoints({
         return `/expense?${params.toString()}`
       },
       providesTags: ['Expenses'],
+      keepUnusedDataFor: 300,
+    }),
+    getLastExpenses: build.query<
+      Expense[],
+      { userId: number; familyId?: number | null; filter: 'day' | 'week' | 'month' | 'year' }
+    >({
+      query: ({ userId, familyId, filter }) => {
+        const params = new URLSearchParams({ userId: String(userId), filter })
+        if (familyId) params.append('familyId', String(familyId))
+        return `/expense/last?${params.toString()}`
+      },
+      providesTags: ['Expenses'],
+      keepUnusedDataFor: 300,
     }),
 
     deleteExpense: build.mutation<void, number>({
@@ -30,4 +43,5 @@ export const expensesApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useGetExpensesQuery, useDeleteExpenseMutation } = expensesApi
+export const { useGetExpensesQuery, useDeleteExpenseMutation, useGetLastExpensesQuery } =
+  expensesApi
