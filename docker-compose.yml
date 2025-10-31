@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_DB: finance_db
       POSTGRES_USER: finance_user
-      POSTGRES_PASSWORD: 246mod#ast
+      POSTGRES_PASSWORD: "246mod#ast"
     ports:
       - "5432:5432"
     volumes:
@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     container_name: finance_backend
     environment:
-    DATABASE_URL: postgresql://finance_user:246mod#ast@postgres:5432/finance_db
+      DATABASE_URL: "postgresql://finance_user:246mod#ast@postgres:5432/finance_db" 
       JWT_SECRET: 246mod#ast
       PORT: 3000
       CORS_ORIGIN: "http://localhost:5173"
