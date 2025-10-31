@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Income, LandingPage, Login, Register } from '../pages'
+import { Chat } from '../pages/Chat'
 import { Expenses } from '../pages/Expenses'
 import { UserProfile } from '../pages/UserProfile'
 import '../shared/styles/base.scss'
@@ -33,6 +34,14 @@ export const AppRouter = () => {
         element={
           <ProtectedRoute>
             <Income />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/user-chat"
+        element={
+          <ProtectedRoute>
+            <Chat />
           </ProtectedRoute>
         }
       />

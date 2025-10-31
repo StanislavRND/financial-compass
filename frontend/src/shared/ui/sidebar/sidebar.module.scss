@@ -1,10 +1,10 @@
+// Desktop Sidebar
 .sidebar {
   background-color: var(--bg-dark-secondary);
   width: 20%;
   padding: 30px 25px 30px 25px;
   position: relative;
   cursor: pointer;
-
   transition:
     width 0.3s ease,
     padding 0.3s ease;
@@ -12,6 +12,11 @@
   &.collapsed {
     width: 115px;
     padding: 30px 10px;
+  }
+
+  // Скрываем на мобильных
+  @media (max-width: 768px) {
+    display: none;
   }
 }
 
@@ -27,7 +32,6 @@
   padding-bottom: 15px;
   border-bottom: 1px solid var(--bg-dark-card);
   color: #3cddef;
-
   transition: justify-content 0.3s ease;
 
   div {
@@ -73,7 +77,6 @@
   gap: 14px;
   padding: 14px;
   border-radius: 10px;
-
   transition: background-color 0.2s ease;
 
   &:hover {
@@ -104,6 +107,92 @@
   }
 }
 
+// Mobile Bottom Navigation
+.mobileBottomNav {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-dark-secondary);
+    border-top: 1px solid var(--bg-dark-card);
+    padding: 8px 12px;
+    z-index: 1000;
+    justify-content: space-around;
+  }
+
+  // Адаптация для очень маленьких экранов
+  @media (max-width: 480px) {
+    padding: 6px 8px;
+  }
+
+  @media (max-width: 375px) {
+    padding: 4px 6px;
+  }
+}
+
+.mobileBottomLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: white;
+  transition: background-color 0.2s ease;
+  min-width: 60px;
+
+  &:hover {
+    background-color: #404347;
+  }
+
+  &.mobileBottomActive {
+    background-color: #404347;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 8px;
+    min-width: 50px;
+  }
+
+  @media (max-width: 375px) {
+    padding: 4px 6px;
+    min-width: 45px;
+  }
+}
+
+.mobileBottomIcon {
+  width: 20px;
+  height: 20px;
+
+  @media (max-width: 480px) {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 375px) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.mobileBottomText {
+  font-size: 0.7rem;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 0.65rem;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 0.6rem;
+  }
+}
+
+// Кнопка для десктопной версии (если нужна)
 .btn {
   position: absolute;
   bottom: 40px;
@@ -124,5 +213,9 @@
   &:hover {
     background-color: rgb(251, 66, 66);
     color: white;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }

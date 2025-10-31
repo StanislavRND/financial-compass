@@ -30,6 +30,8 @@ type Props = {
 export const BarChartUI = ({ labels, datasets }: Props) => {
   const data = { labels, datasets }
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   const options: ChartOptions<'bar'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -42,7 +44,13 @@ export const BarChartUI = ({ labels, datasets }: Props) => {
         type: 'category',
         grid: { color: '#2a2c2f' },
         border: { color: 'rgba(255, 255, 255, 0.3)', display: true },
-        ticks: { color: 'white', font: { size: 20, weight: 'normal' } },
+        ticks: {
+          color: 'white',
+          font: {
+            size: isMobile ? 12 : 20,
+            weight: 'normal',
+          },
+        },
       },
       y: {
         beginAtZero: true,
@@ -55,7 +63,7 @@ export const BarChartUI = ({ labels, datasets }: Props) => {
 
   return (
     <div className={styles.chart}>
-      <Bar data={data} options={options} style={{ width: '100%', height: '100%' }} />
+      <Bar data={data} options={options} />
     </div>
   )
 }

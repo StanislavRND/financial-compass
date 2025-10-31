@@ -8,26 +8,75 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 760px) {
+    padding: 24px 12px;
+  }
 }
 
 .names {
   display: flex;
   gap: 40px;
   margin-top: 20px;
+
+  @media (max-width: 1024px) {
+    gap: 30px;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 20px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+    gap: 16px;
+    margin-top: 14px;
+  }
 }
 
 .name {
   display: flex;
+  flex-wrap: wrap;
   color: white;
   gap: 8px;
   align-items: center;
+
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 4px;
+  }
 }
 
 .text {
   font-size: 1.2rem;
+
+  @media (max-width: 1024px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 }
+
 .circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+
+  @media (max-width: 1024px) {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 768px) {
+    width: 6px;
+    height: 6px;
+  }
 }

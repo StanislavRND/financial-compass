@@ -5,7 +5,7 @@ const expenses = [800, 700, 1100, 600, 1000]
 const profit = [400, 200, 400, 200, 700]
 const loss = null
 
-const datasets = [
+export const datasets = [
   {
     label: 'Доходы',
     data: income,

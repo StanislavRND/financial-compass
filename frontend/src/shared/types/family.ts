@@ -5,3 +5,7 @@ export interface Family {
   invite?: string
   members: User[]
 }
+
+export type FamilyData = Partial<Omit<Family, 'id'>> & {
+  familyId?: number
+}

@@ -19,7 +19,7 @@ export const Income = () => {
           <ListTransactions type={'income'} filter={filter} />
         </div>
         <div className={styles.graph}>
-          <BarChart setFilter={setFilter} filter={filter} />
+          <BarChart />
         </div>
       </section>
     </div>

@@ -6,6 +6,11 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+
+  @media (max-width: 1000px) {
+    padding: 20px 30px 25px 30px;
+    border-radius: 12px;
+  }
 }
 
 .dateNavigation {
@@ -14,6 +19,11 @@
   justify-content: center;
   gap: 15px;
   margin-bottom: 20px;
+
+  @media (max-width: 500px) {
+    gap: 12px;
+    margin-bottom: 15px;
+  }
 }
 
 .arrowBtn {
@@ -27,6 +37,10 @@
   &:hover {
     transform: scale(1.1);
   }
+
+  @media (max-width: 500px) {
+    font-size: 1.1rem;
+  }
 }
 
 .selectedDate {
@@ -37,4 +51,9 @@
   font-size: 1.1rem;
   position: relative;
   z-index: 10;
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+    padding: 4px 8px;
+  }
 }

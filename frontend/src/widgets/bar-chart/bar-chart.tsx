@@ -1,6 +1,6 @@
 import { skipToken } from '@reduxjs/toolkit/query'
 import 'chartjs-adapter-date-fns'
-import { endOfWeek, format, startOfWeek, subDays, subMonths, subYears } from 'date-fns'
+import { format, startOfWeek, subDays, subMonths, subYears } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { useMemo, useState } from 'react'
 import { useAuth } from '../../features/auth/useAuth'
@@ -38,8 +38,7 @@ export const BarChart = () => {
       case 'week':
         return Array.from({ length: 5 }, (_, i) => {
           const start = startOfWeek(subDays(now, i * 7), { weekStartsOn: 1 })
-          const end = endOfWeek(subDays(now, i * 7), { weekStartsOn: 1 })
-          return `${format(start, 'dd.MM', { locale: ru })}-${format(end, 'dd.MM', { locale: ru })}`
+          return format(start, 'dd.MM', { locale: ru })
         }).reverse()
 
       case 'month':
@@ -91,10 +90,10 @@ export const BarChart = () => {
   ]
 
   const names = [
-    { id: 1, name: 'Расходы', color: '#63C96D' },
-    { id: 2, name: 'Доходы', color: '#E6E13F' },
-    { id: 3, name: 'Прибыль', color: '#46E8D3' },
-    { id: 4, name: 'Убыток', color: '#E16D56' },
+    { id: 1, name: 'расходы', color: '#63C96D' },
+    { id: 2, name: 'доходы', color: '#E6E13F' },
+    { id: 3, name: 'прибыль', color: '#46E8D3' },
+    { id: 4, name: 'убыток', color: '#E16D56' },
   ]
 
   if (isLoading) return <div>Загрузка...</div>
@@ -102,12 +101,13 @@ export const BarChart = () => {
   return (
     <section className={styles.barChart}>
       <Filter onChange={setFilter} selectedFilter={filter} filters={filters} />
+
       <BarChartUI labels={labels} datasets={datasets} />
+
       <div className={styles.names}>
         {names.map((el) => (
           <div key={el.id} className={styles.name}>
             <div className={styles.circle} style={{ backgroundColor: el.color }} />
-            <span>-</span>
             <span className={styles.text}>{el.name}</span>
           </div>
         ))}
@@ -116,7 +116,6 @@ export const BarChart = () => {
   )
 }
 
-// Сравнение даты с лейблом в локальном формате
 function matchDateLocal(dateStr: string, label: string, filter: FilterType) {
   if (!dateStr) return false
   const date = new Date(dateStr)
@@ -128,11 +127,7 @@ function matchDateLocal(dateStr: string, label: string, filter: FilterType) {
       return format(localDate, 'dd.MM', { locale: ru }) === label
     case 'week': {
       const start = startOfWeek(localDate, { weekStartsOn: 1 })
-      const end = endOfWeek(localDate, { weekStartsOn: 1 })
-      return (
-        `${format(start, 'dd.MM', { locale: ru })}-${format(end, 'dd.MM', { locale: ru })}` ===
-        label
-      )
+      return format(start, 'dd.MM', { locale: ru }) === label
     }
     case 'month':
       return format(localDate, 'LLLL', { locale: ru }) === label

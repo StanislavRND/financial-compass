@@ -1,9 +1,15 @@
 .userProfile {
   &__info {
     display: flex;
-    align-items: center;
     gap: 30px;
     margin-bottom: 40px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: start;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
   }
 
   &__avatar {
@@ -17,29 +23,54 @@
     align-items: center;
     justify-content: center;
     color: #fff;
+
+    @media (max-width: 768px) {
+      width: 80px;
+      height: 80px;
+      font-size: 2.5rem;
+    }
   }
 
   &__name {
     font-size: 3.5rem;
     font-weight: 600;
     margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
   }
 
   &__subtitle {
     font-size: 1rem;
     color: var(--bg-light-blue);
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
   }
 
   &__sectionTitle {
     font-size: 1.9rem;
     font-weight: 500;
     margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
   }
 
   &__section {
     border-top: 1px solid var(--bg-dark-secondary);
     padding-top: 25px;
     margin-bottom: 40px;
+
+    @media (max-width: 768px) {
+      padding-top: 20px;
+      margin-bottom: 30px;
+    }
   }
 
   &__infoGrid {
@@ -47,9 +78,9 @@
     flex-wrap: wrap;
     gap: 100px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
     }
   }
 
@@ -59,10 +90,19 @@
       font-size: 1.25rem;
       font-weight: 500;
       margin-bottom: 8px;
+
+      @media (max-width: 768px) {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+      }
     }
 
     h4 {
       font-size: 1.15rem;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
   }
 }

@@ -39,4 +39,26 @@
       background: var(--bg-light-blue);
     }
   }
+
+  @media (max-width: 768px) {
+    gap: 20px;
+    margin-bottom: 20px;
+
+    .name {
+      font-size: 1rem;
+      padding: 4px 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    gap: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .name {
+      font-size: 0.9rem;
+      padding: 3px 0;
+    }
+  }
 }

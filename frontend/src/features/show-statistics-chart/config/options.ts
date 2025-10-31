@@ -1,6 +1,8 @@
 import { ChartOptions } from 'chart.js'
 
-export const options: ChartOptions<'bar'> = {
+const screenWidth = window.innerWidth
+
+const options: ChartOptions<'bar'> = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -10,35 +12,23 @@ export const options: ChartOptions<'bar'> = {
   scales: {
     x: {
       type: 'category',
-      grid: {
-        color: '#2a2c2f',
-      },
-      border: {
-        color: 'rgba(255, 255, 255, 0.3)',
-        display: true,
-      },
+      grid: { color: '#2a2c2f' },
+      border: { color: 'rgba(255, 255, 255, 0.3)', display: true },
       ticks: {
         color: 'white',
         font: {
-          size: 20,
+          size: screenWidth < 600 ? 12 : screenWidth < 900 ? 14 : 20,
           weight: 'normal',
         },
       },
     },
     y: {
       beginAtZero: true,
-      grid: {
-        color: '#2a2c2f',
-      },
-      border: {
-        color: '#2a2c2f',
-        display: true,
-      },
+      grid: { color: '#2a2c2f' },
+      border: { color: '#2a2c2f', display: true },
       ticks: {
         color: 'white',
-        font: {
-          size: 0,
-        },
+        font: { size: screenWidth < 600 ? 8 : 0 },
       },
     },
   },

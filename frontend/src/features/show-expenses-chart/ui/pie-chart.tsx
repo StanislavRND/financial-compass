@@ -8,9 +8,10 @@ type PropsData = {
   labels?: string[]
   data?: number[]
   colors?: string[]
+  type: 'income' | 'expense'
 }
 
-export const PieChart = ({ labels = [], data = [], colors = [] }: PropsData) => {
+export const PieChart = ({ labels = [], data = [], colors = [], type }: PropsData) => {
   const isEmpty = !data.length || data.every((v) => v === 0)
 
   const chartData = {
@@ -32,7 +33,15 @@ export const PieChart = ({ labels = [], data = [], colors = [] }: PropsData) => 
     cutout: '60%',
     plugins: {
       legend: { display: false },
-      tooltip: { enabled: !isEmpty },
+      tooltip: {
+        enabled: !isEmpty,
+        bodyFont: {
+          size: window.innerWidth <= 500 ? 12 : 14,
+        },
+        titleFont: {
+          size: window.innerWidth <= 500 ? 11 : 13,
+        },
+      },
     },
   }
 
@@ -43,7 +52,9 @@ export const PieChart = ({ labels = [], data = [], colors = [] }: PropsData) => 
       <Doughnut data={chartData} options={options} />
 
       {isEmpty ? (
-        <div className={`${styles.empty} ${styles.summa}`}>Расходов не было</div>
+        <div className={`${styles.empty} ${styles.summa}`}>
+          {type === 'income' ? 'Доходов не было' : 'Расходов не было'}
+        </div>
       ) : (
         <div className={styles.summa}>{sum} ₽</div>
       )}

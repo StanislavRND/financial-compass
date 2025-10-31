@@ -71,6 +71,11 @@
   align-items: center;
   transition: background-color 0.3s ease;
 
+  @media (max-width: 500px) {
+    width: 40px;
+    height: 40px;
+  }
+
   &:hover {
     background-color: #2ba8b6;
   }
@@ -79,6 +84,11 @@
     position: relative;
     width: 25px;
     height: 25px;
+
+    @media (max-width: 500px) {
+      width: 16px;
+      height: 16px;
+    }
 
     span {
       position: absolute;

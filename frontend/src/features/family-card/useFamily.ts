@@ -22,6 +22,7 @@ export const useFamily = () => {
       await createFamily(userId)
       setSuccess(true)
       fetchFamily()
+      window.location.reload()
     } catch {
       setError('Ошибка создания семьи')
     } finally {

@@ -90,7 +90,12 @@ export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
         />
       )}
 
-      <PieChart labels={chartData.labels} data={chartData.data} colors={chartData.colors} />
+      <PieChart
+        type="expense"
+        labels={chartData.labels}
+        data={chartData.data}
+        colors={chartData.colors}
+      />
       <CreateExpense setShowModal={setShowModal} />
 
       {showModal &&

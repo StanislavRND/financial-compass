@@ -20,6 +20,7 @@ model User {
   updatedAt DateTime @updatedAt
 	expenses  Expense[]
 	income		Income[]
+	messages	Message[]
 }
 
 model Family {
@@ -29,6 +30,7 @@ model Family {
   users     User[]
 	expenses	Expense[]
 	income		Income[]
+	messages	Message[]
 }
 
 model Expense {
@@ -71,4 +73,17 @@ model CategoryIncome {
 	color     String
 	createdAt DateTime @default(now())
 	expenses Income[]
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  familyId  Int
+  family    Family   @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([familyId, createdAt])
 }
