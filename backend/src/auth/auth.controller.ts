@@ -39,7 +39,7 @@ export class AuthController {
 
       res.cookie("userId", user.id, {
         httpOnly: true,
-        sameSite: "lax",
+        path: '/'
       });
 
       return { message: "Успешная регистрация", user };
