@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { io, Socket } from 'socket.io-client'
-import { Message, WebSocketMessage } from '../../shared/types/message'
+import { WebSocketMessage } from '../../shared/types/message'
 
 interface UseWebSocketProps {
   userId: number
