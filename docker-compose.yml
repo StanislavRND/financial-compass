@@ -18,9 +18,9 @@ services:
       dockerfile: Dockerfile
     container_name: finance_backend
     environment:
-      DATABASE_URL: "postgresql://finance_user:246mod#ast@postgres:5432/finance_db" 
+      DATABASE_URL: "postgresql://finance_user:246mod%23ast@postgres:5432/finance_db"
       JWT_SECRET: "246mod#ast"
-      PORT: 3000
+      PORT: "3000"
       CORS_ORIGIN: "http://localhost:5173"
     ports:
       - "3000:3000"
