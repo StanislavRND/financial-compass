@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: finance_postgres
+    environment:
+      POSTGRES_DB: finance_db
+      POSTGRES_USER: finance_user
+      POSTGRES_PASSWORD: 246mod#ast
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: finance_backend
+    environment:
+    DATABASE_URL: postgresql://finance_user:246mod#ast@postgres:5432/finance_db
+      JWT_SECRET: 246mod#ast
+      PORT: 3000
+      CORS_ORIGIN: "http://localhost:5173"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: finance_frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    restart: "always"
+
+volumes:
+  postgres_data:
