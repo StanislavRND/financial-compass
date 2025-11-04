@@ -37,6 +37,18 @@ export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
 
   const { user } = useAuth()
 
+  const today = useMemo(() => {
+    const date = new Date()
+    date.setHours(0, 0, 0, 0)
+    return date
+  }, [])
+
+  const isTodayOrFuture = useMemo(() => {
+    const selected = new Date(selectedDate)
+    selected.setHours(0, 0, 0, 0)
+    return selected >= today
+  }, [selectedDate, today])
+
   const queryArgs = useMemo(() => {
     if (!user) return skipToken
     return {
@@ -60,9 +72,26 @@ export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
   }
 
   const handleNextDate = () => {
+    if (isTodayOrFuture) return
+
     const next = new Date(selected)
     next.setDate(next.getDate() + 1)
+
+    const nextDate = new Date(next)
+    nextDate.setHours(0, 0, 0, 0)
+    if (nextDate > today) return
+
     dispatch(setDate(next.toISOString()))
+  }
+
+  const handleDateSelect = (date: Date) => {
+    const selectedDate = new Date(date)
+    selectedDate.setHours(0, 0, 0, 0)
+
+    if (selectedDate > today) return
+
+    dispatch(setDate(date.toISOString()))
+    setShowCalendar(false)
   }
 
   return (
@@ -77,7 +106,7 @@ export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
           {selectedDate.toLocaleDateString()}
         </div>
 
-        <button onClick={handleNextDate} className={styles.arrowBtn}>
+        <button onClick={handleNextDate} className={styles.arrowBtn} disabled={isTodayOrFuture}>
           &gt;
         </button>
       </div>
@@ -85,8 +114,9 @@ export const PiaChartExpenses = ({ filter, setFilter }: Props) => {
       {showCalendar && (
         <Calendar
           selected={selectedDate}
-          onSelect={(date) => dispatch(setDate(date.toISOString()))}
+          onSelect={handleDateSelect}
           onClose={() => setShowCalendar(false)}
+          disabledBefore={new Date(2020, 0, 1)}
         />
       )}
 

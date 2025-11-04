@@ -28,7 +28,7 @@ export const useWebSocket = ({
   const connect = useCallback(() => {
     if (!userId || !id) return
 
-    const socket = io('ws://80.87.195.94:3000', {
+    const socket = io('ws://localhost:3000', {
       auth: {
         userId: userId,
       },

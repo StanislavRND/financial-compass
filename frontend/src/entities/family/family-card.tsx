@@ -1,7 +1,4 @@
-import { useNavigate } from 'react-router-dom'
-import { logoutApi } from '../../shared/api/auth'
 import { Family } from '../../shared/types/family'
-import { Button } from '../../shared/ui/button/button'
 import styles from './family-card.module.scss'
 
 type Props = {
@@ -9,12 +6,6 @@ type Props = {
 }
 
 export const FamilyCard = ({ family }: Props) => {
-  const navigate = useNavigate()
-  const handleLogout = async () => {
-    await logoutApi()
-    navigate('/login')
-  }
-
   return (
     <>
       <div className={styles.userProfile__sectionTitle}>Семья</div>
@@ -31,10 +22,6 @@ export const FamilyCard = ({ family }: Props) => {
             ))}
           </ul>
         </div>
-
-        <Button onClick={handleLogout} className={styles.btn}>
-          Выйти
-        </Button>
       </div>
     </>
   )

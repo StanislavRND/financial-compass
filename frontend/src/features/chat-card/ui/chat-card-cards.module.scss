@@ -5,6 +5,11 @@
   padding: 20px;
   flex-grow: 1;
   overflow-y: auto;
+
+  @media (max-width: 768px) {
+    padding: 12px;
+    gap: 12px;
+  }
 }
 
 .card {
@@ -12,12 +17,29 @@
   gap: 10px;
   align-items: flex-end;
 
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+
   .content {
     background: #37393c;
     border-radius: 12px 12px 12px 0px;
     padding: 12px 25px;
     max-width: 550px;
     position: relative;
+
+    @media (max-width: 768px) {
+      padding: 10px 20px;
+      max-width: 400px;
+    }
+    @media (max-width: 500px) {
+      padding: 10px 20px;
+      max-width: 300px;
+    }
+    @media (max-width: 380px) {
+      padding: 10px 20px;
+      max-width: 260px;
+    }
 
     .triangle {
       position: absolute;
@@ -46,6 +68,10 @@
       line-height: 1.4;
       word-wrap: break-word;
       white-space: pre-wrap;
+
+      @media (max-width: 768px) {
+        font-size: 1.1rem;
+      }
     }
 
     .time {
@@ -54,6 +80,21 @@
       margin-top: 4px;
       display: block;
       text-align: right;
+    }
+  }
+
+  &.ownMessage {
+    flex-direction: row-reverse;
+
+    .content {
+      border-radius: 12px 12px 0px 12px;
+
+      .triangle {
+        left: auto;
+        right: -5px;
+        border-right: none;
+        border-left: 6px solid currentColor;
+      }
     }
   }
 }
@@ -69,4 +110,9 @@
   font-weight: 600;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 32px;
+    height: 32px;
+  }
 }

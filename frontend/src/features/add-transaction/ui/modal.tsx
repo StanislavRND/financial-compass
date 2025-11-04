@@ -51,7 +51,6 @@ export const Modal = ({ onClose, type, typeCategories }: Props) => {
               e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '')
             }}
           />
-          <div className={styles.rub}>RUB</div>
         </div>
 
         <Controller

@@ -38,6 +38,16 @@
     transform: scale(1.1);
   }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: initial;
+      transform: none;
+    }
+  }
+
   @media (max-width: 500px) {
     font-size: 1.1rem;
   }

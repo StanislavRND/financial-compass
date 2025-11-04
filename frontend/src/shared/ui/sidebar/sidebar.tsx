@@ -26,7 +26,6 @@ export const Sidebar = () => {
 
   return (
     <>
-      {/* Desktop Sidebar */}
       <aside
         onClick={toggleSidebar}
         className={`${styles.sidebar} ${collapsedClass} ${styles.desktopSidebar}`}

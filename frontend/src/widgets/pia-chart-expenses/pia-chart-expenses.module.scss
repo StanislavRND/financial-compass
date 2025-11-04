@@ -34,6 +34,16 @@
   cursor: pointer;
   transition: transform 0.2s ease;
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: initial;
+      transform: none;
+    }
+  }
+
   &:hover {
     transform: scale(1.1);
   }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { DayPicker } from 'react-day-picker'
+import { ru } from 'date-fns/locale'
 import 'react-day-picker/dist/style.css'
 import styles from './calendar.module.scss'
 
@@ -39,6 +40,9 @@ export const Calendar = ({ selected, onSelect, onClose, disabledBefore }: Calend
     onClose()
   }
 
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
   return (
     <div ref={calendarRef} className={styles.calendarPopup}>
       <DayPicker
@@ -51,7 +55,17 @@ export const Calendar = ({ selected, onSelect, onClose, disabledBefore }: Calend
         onDayMouseEnter={(date) => setHoveredDate(date)}
         onDayMouseLeave={() => setHoveredDate(undefined)}
         modifiersClassNames={modifiersClassNames}
-        disabled={{ before: disabledBefore || new Date(2020, 0, 1) }}
+        disabled={[{ before: disabledBefore || new Date(2020, 0, 1) }, { after: today }]}
+        locale={ru}
+        formatters={{
+          formatCaption: (date) => {
+            return new Intl.DateTimeFormat('ru-RU', {
+              month: 'long',
+              year: 'numeric',
+            }).format(date)
+          },
+        }}
+        weekStartsOn={1}
       />
     </div>
   )
