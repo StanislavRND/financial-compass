@@ -7,11 +7,11 @@ type Props = {
   error: string
 }
 
-export const CreateFamilyButton = ({ onClick, loading, success, error }: Props) => {
+export const CreateFamilyButton = ({ onClick, loading, error }: Props) => {
   return (
     <>
       <button className={styles.createFamilyBtn} onClick={onClick} disabled={loading}>
-        {loading ? 'Загрузка...' : success ? 'Семья создана' : 'Создать семью'}
+        {loading ? 'Загрузка...' : 'Создать семью'}
       </button>
       {error && <p className={styles.userError}>{error}</p>}
     </>

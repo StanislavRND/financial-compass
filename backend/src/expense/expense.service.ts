@@ -163,4 +163,16 @@ export class ExpenseService {
       where: { id },
     });
   }
+
+  async transferUserExpensesToFamily(userId: number, familyId: number) {
+    return await this.prisma.expense.updateMany({
+      where: {
+        userId: userId,
+        familyId: null, 
+      },
+      data: {
+        familyId: familyId,
+      },
+    });
+  }
 }

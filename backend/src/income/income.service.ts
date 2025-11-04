@@ -159,4 +159,16 @@ export class IncomeService {
   async deleteIncome(id: number) {
     await this.prisma.income.delete({ where: { id } });
   }
+
+  async transferUserIncomeToFamily(userId: number, familyId: number) {
+    return await this.prisma.income.updateMany({
+      where: {
+        userId: userId,
+        familyId: null,
+      },
+      data: {
+        familyId: familyId,
+      },
+    });
+  }
 }

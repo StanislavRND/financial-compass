@@ -9,7 +9,7 @@ import profileIcon from '../../assets/sidebar/user-cog.svg'
 import styles from './sidebar.module.scss'
 
 export const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const user = useAuth()
   const location = useLocation()
 

@@ -16,6 +16,13 @@ export const useFamily = () => {
 
   const handleCreate = async () => {
     if (!userId) return
+
+    const isConfirmed = confirm(
+      'При создании семьи все ваши личные расходы и доходы будут удалены. Продолжить?',
+    )
+
+    if (!isConfirmed) return
+
     setLoading(true)
     setError('')
     try {

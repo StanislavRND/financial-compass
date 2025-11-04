@@ -64,4 +64,14 @@ export class ExpenseController {
   async deleteExpense(@Param("id", ParseIntPipe) id: number): Promise<void> {
     await this.expenseService.deleteExpense(id);
   }
+
+  @Post("transfer-to-family")
+  async transferExpensesToFamily(
+    @Body() body: { userId: number; familyId: number }
+  ) {
+    return this.expenseService.transferUserExpensesToFamily(
+      body.userId,
+      body.familyId
+    );
+  }
 }

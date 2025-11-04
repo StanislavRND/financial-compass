@@ -65,4 +65,14 @@ export class IncomeController {
   async deleteIncome(@Param("id", ParseIntPipe) id: number): Promise<void> {
     await this.incomeService.deleteIncome(id);
   }
+
+  @Post("transfer-to-family")
+  async transferIncomeToFamily(
+    @Body() body: { userId: number; familyId: number }
+  ) {
+    return this.incomeService.transferUserIncomeToFamily(
+      body.userId,
+      body.familyId
+    );
+  }
 }
