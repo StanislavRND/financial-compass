@@ -1,8 +1,10 @@
 import {
+  BadRequestException,
   Body,
   ConflictException,
   Controller,
   Get,
+  InternalServerErrorException,
   Post,
   Req,
   Res,
@@ -53,7 +55,11 @@ export class AuthController {
         );
       }
 
-      throw error;
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+
+      throw new InternalServerErrorException("Внутренняя ошибка сервера");
     }
   }
 

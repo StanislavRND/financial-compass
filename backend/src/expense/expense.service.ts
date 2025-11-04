@@ -142,7 +142,6 @@ export class ExpenseService {
       }
     }
 
-    // Получаем все расходы за эти диапазоны
     const allExpenses = await Promise.all(
       ranges.map((range) =>
         this.prisma.expense.findMany({
@@ -156,7 +155,6 @@ export class ExpenseService {
       )
     );
 
-    // Возвращаем массив массивов (каждый элемент — данные за один день/неделю/месяц/год)
     return allExpenses;
   }
 

@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
 import * as bcrypt from "bcrypt";
 import { Request } from "express";
 import { PrismaService } from "src/prisma.service";
@@ -17,13 +17,13 @@ export class AuthService {
     const hashed = await bcrypt.hash(password, 10);
 
     if (isFamily) {
-      if (!invite) throw new Error("Инвайт-код обязателен");
+      if (!invite) throw new BadRequestException("Инвайт-код обязателен");
 
       const family = await this.prisma.family.findUnique({
         where: { invite: invite },
       });
 
-      if (!family) throw new Error("Неверный инвайт-код");
+      if (!family) throw new BadRequestException("Неверный инвайт-код");
 
       return this.prisma.user.create({
         data: {

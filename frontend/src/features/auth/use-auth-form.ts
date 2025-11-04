@@ -9,7 +9,10 @@ export const useAuthForm = <M extends Modes>(mode: M) => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<FormData<M>>({ mode: 'onChange' })
+  } = useForm<FormData<M>>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  })
 
   const familyValue = useWatch({
     control,
@@ -24,16 +27,28 @@ export const useAuthForm = <M extends Modes>(mode: M) => {
     setLoading: (val: boolean) => void,
   ) => {
     setLoading(true)
+    setError('')
+
     try {
       if (mode === 'login') {
         await loginApi(data as LoginForm)
         navigate('/user-expenses')
       } else {
-        await registerApi(data as RegisterForm)
+        const registerData = { ...data } as RegisterForm
+        if (!registerData.isFamily) {
+          delete registerData.invite
+        }
+        await registerApi(registerData)
         navigate('/login')
       }
-    } catch {
-      setError('Неверный логин или пароль')
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message)
+      } else if (typeof error === 'string') {
+        setError(error)
+      } else {
+        setError('Произошла неизвестная ошибка')
+      }
     } finally {
       setLoading(false)
     }

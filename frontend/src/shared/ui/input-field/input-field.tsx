@@ -27,7 +27,7 @@ export function InputField<T extends FieldValues>({
         <input
           {...register(name, {
             required: 'Обязательное поле',
-            minLength: { value: 4, message: 'Минимум 4 символа' },
+            minLength: { value: 2, message: 'Минимум 2 символа' },
             maxLength: { value: 20, message: 'Максимум 20 символов' },
           })}
           type={type === 'password' && isVisible ? 'text' : type}

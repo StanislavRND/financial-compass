@@ -23,7 +23,6 @@ export const messageApi = {
     limit: number = 50,
   ): Promise<MessagesResponse> {
     try {
-      console.log('🔄 Fetching messages for family:', familyId)
       const response = await axiosBase.get(`/messages/family/${familyId}`, {
         params: {
           page: page.toString(),
@@ -31,20 +30,16 @@ export const messageApi = {
         },
       })
 
-      // Бэкенд возвращает массив сообщений напрямую
       const messagesArray = response.data
 
-      console.log('✅ Raw messages from API:', messagesArray)
-
-      // Преобразуем в ожидаемую структуру
       return {
         messages: messagesArray.map((msg: any) => ({
           id: msg.id.toString(),
-          message: msg.content, // content → message
-          timestamp: msg.createdAt, // createdAt → timestamp
+          message: msg.content,
+          timestamp: msg.createdAt,
           userId: msg.userId,
           familyId: msg.familyId,
-          userName: msg.user?.name, // имя пользователя
+          userName: msg.user?.name,
         })),
         total: messagesArray.length,
         page,
@@ -59,7 +54,7 @@ export const messageApi = {
   async sendMessage(userId: number, messageData: { message: string; familyId: number }) {
     try {
       const response = await axiosBase.post('/messages', {
-        content: messageData.message, // message → content
+        content: messageData.message,
         familyId: messageData.familyId,
         userId,
       })

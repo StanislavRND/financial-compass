@@ -31,7 +31,6 @@ export const ChatFooter = ({
     setMessage(value)
     handleInput()
 
-    // Отправка события "печатает" с debounce
     if (value) {
       onTypingStart()
       if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current)

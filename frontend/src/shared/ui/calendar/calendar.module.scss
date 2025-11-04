@@ -9,6 +9,51 @@
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 480px) {
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 320px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 360px) {
+    padding: 8px;
+    max-width: 280px;
+  }
+}
+
+.calendarPopup :global(.rdp) {
+  @media (max-width: 480px) {
+    font-size: 14px;
+
+    :global(.rdp-day) {
+      width: 32px;
+      height: 32px;
+      font-size: 12px;
+    }
+
+    :global(.rdp-caption) {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    :global(.rdp-head) {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    :global(.rdp-day) {
+      width: 28px;
+      height: 28px;
+      font-size: 11px;
+    }
+  }
 }
 
 .mySelected {

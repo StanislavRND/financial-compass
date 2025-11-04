@@ -70,7 +70,6 @@ export const Sidebar = () => {
         </nav>
       </aside>
 
-      {/* Mobile Bottom Navigation */}
       <nav className={styles.mobileBottomNav}>
         <Link
           to="/user-expenses"
