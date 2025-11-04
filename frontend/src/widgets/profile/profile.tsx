@@ -7,7 +7,17 @@ import { CreateFamilyButton } from '../../shared/ui/button/createFamily'
 import styles from './profile.module.scss'
 
 export const Profile = () => {
-  const { family, hasFamily, loading, error, success, handleCreate } = useFamily()
+  const {
+    family,
+    hasFamily,
+    loading,
+    error,
+    success,
+    handleCreate,
+    showConfirm,
+    handleConfirmCreate,
+    handleCancelCreate,
+  } = useFamily()
 
   const navigate = useNavigate()
   const handleLogout = async () => {
@@ -37,6 +47,23 @@ export const Profile = () => {
             Выйти
           </Button>
           {error && <p className={styles.userProfile__error}>{error}</p>}
+
+          {showConfirm && (
+            <div className={styles.confirmModal}>
+              <div className={styles.confirmModal__content}>
+                <p>При создании семьи все ваши личные расходы и доходы будут удалены.</p>
+                <p>Продолжить?</p>
+                <div className={styles.confirmModal__actions}>
+                  <Button onClick={handleCancelCreate} className={styles.confirmModal__cancel}>
+                    Отмена
+                  </Button>
+                  <Button onClick={handleConfirmCreate} className={styles.confirmModal__confirm}>
+                    Продолжить
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </section>

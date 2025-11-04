@@ -11,18 +11,17 @@ export const useFamily = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const hasFamily = !!family
 
-  const handleCreate = async () => {
+  const handleCreateClick = () => {
+    setShowConfirm(true)
+  }
+
+  const handleConfirmCreate = async () => {
     if (!userId) return
-
-    const isConfirmed = confirm(
-      'При создании семьи все ваши личные расходы и доходы будут удалены. Продолжить?',
-    )
-
-    if (!isConfirmed) return
-
+    setShowConfirm(false)
     setLoading(true)
     setError('')
     try {
@@ -35,6 +34,10 @@ export const useFamily = () => {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleCancelCreate = () => {
+    setShowConfirm(false)
   }
 
   const fetchFamily = async () => {
@@ -51,5 +54,15 @@ export const useFamily = () => {
     fetchFamily()
   }, [userId])
 
-  return { family, hasFamily, loading, error, success, handleCreate }
+  return {
+    family,
+    hasFamily,
+    loading,
+    error,
+    success,
+    handleCreate: handleCreateClick,
+    showConfirm,
+    handleConfirmCreate,
+    handleCancelCreate,
+  }
 }
