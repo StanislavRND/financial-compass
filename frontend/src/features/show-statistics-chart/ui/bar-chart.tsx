@@ -56,7 +56,9 @@ export const BarChartUI = ({ labels, datasets }: Props) => {
         beginAtZero: true,
         grid: { color: '#2a2c2f' },
         border: { color: '#2a2c2f', display: true },
-        ticks: { color: 'white', font: { size: 0 } },
+        ticks: {
+          display: false,
+        },
       },
     },
   }
