@@ -39,7 +39,7 @@ export class AuthController {
 
       res.cookie("userId", user.id, {
         httpOnly: true,
-        path: '/'
+        sameSite: "lax",
       });
 
       return { message: "Успешная регистрация", user };
@@ -65,9 +65,9 @@ export class AuthController {
     const user = await this.authService.login(body.login, body.password);
     res.cookie("userId", user.id, {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
       path: "/",
+      sameSite: "none",
+      secure: false,
     });
 
     return { message: "Успешная вход", user };
