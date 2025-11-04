@@ -65,9 +65,7 @@ export class AuthController {
     const user = await this.authService.login(body.login, body.password);
     res.cookie("userId", user.id, {
       httpOnly: true,
-      path: "/",
-      sameSite: "none",
-      secure: false,
+      sameSite: "lax",
     });
 
     return { message: "Успешная вход", user };
