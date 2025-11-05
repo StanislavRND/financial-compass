@@ -25,7 +25,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   private connectedUsers = new Map<string, number>();
 
   async handleConnection(client: Socket): Promise<void> {
-    console.log(`Client connected: ${client.id}`);
     const userId = client.handshake.auth.userId;
     if (userId) {
       this.connectedUsers.set(client.id, parseInt(userId));
@@ -35,20 +34,17 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   handleDisconnect(client: Socket): void {
-    console.log(`Client disconnected: ${client.id}`);
     this.connectedUsers.delete(client.id);
   }
 
   @SubscribeMessage("join_family")
   handleJoinFamily(client: Socket, familyId: number): void {
     client.join(`family_${familyId}`);
-    console.log(`Client ${client.id} joined family ${familyId}`);
   }
 
   @SubscribeMessage("leave_family")
   handleLeaveFamily(client: Socket, familyId: number): void {
     client.leave(`family_${familyId}`);
-    console.log(`Client ${client.id} left family ${familyId}`);
   }
 
   @SubscribeMessage("send_message")
