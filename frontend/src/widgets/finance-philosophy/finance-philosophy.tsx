@@ -18,7 +18,7 @@ export const FinancePhilosophy = () => {
           </div>
           <div className={styles.pholosophyRight}>
             <h3 className={styles.pholosophyRightTitle}>
-              Ваши деньги — ваша жизнь. Тратьте их с пользой с YNAB.
+              Ваши деньги — ваша жизнь. Тратьте их с пользой с Финансовым Компасом.
             </h3>
             <p className={styles.pholosophyRightSubtitle}>
               Вы вкладываете так много усилий в зарабатывание денег, не должны ли вы вкладывать

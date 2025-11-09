@@ -33,10 +33,20 @@ export const AuthForm = <M extends Modes>({
   mode,
   fields,
 }: AuthFormProps<M>) => {
-  const { register, handleSubmit, errors, familyValue, onSubmit } = useAuthForm(mode)
+  const { register, handleSubmit, errors, familyValue, onSubmit, watch } = useAuthForm(mode)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [isVisiblePass, setIsVisiblePass] = useState(false)
+
+  let agreementChecked = false
+  if (mode === 'register') {
+    agreementChecked = (
+      watch as unknown as <TField extends keyof RegisterForm>(
+        name: TField,
+        defaultValue?: boolean,
+      ) => boolean
+    )('agreement', false)
+  }
 
   return (
     <div className={styles.auth}>
@@ -50,7 +60,18 @@ export const AuthForm = <M extends Modes>({
             <Checkbox
               key={field.name}
               name={field.name}
-              label="Семейный аккаунт"
+              label={
+                field.name === 'agreement' && mode === 'register' ? (
+                  <>
+                    Я принимаю{' '}
+                    <Link to="/user-agreement" className={styles.agreementLink}>
+                      пользовательское соглашение
+                    </Link>
+                  </>
+                ) : (
+                  'Семейный аккаунт'
+                )
+              }
               register={register}
             />
           ) : (
@@ -79,8 +100,25 @@ export const AuthForm = <M extends Modes>({
           />
         )}
 
+        {mode === 'register' && (
+          <Checkbox<RegisterForm>
+            name="agreement"
+            label={
+              <>
+                Я принимаю{' '}
+                <Link to="/user-agreement" className={styles.agreementLink}>
+                  пользовательское соглашение
+                </Link>
+              </>
+            }
+            register={register as UseFormRegister<RegisterForm>}
+          />
+        )}
+
         {error && <p className={styles.errorText}>{error}</p>}
-        <Button className={styles.btn}>{loading ? 'Загрузка...' : buttonText}</Button>
+        <Button className={styles.btn} disabled={mode === 'register' && !agreementChecked}>
+          {loading ? 'Загрузка...' : buttonText}
+        </Button>
       </form>
 
       <div className={styles.variable}>

@@ -24,10 +24,26 @@
     z-index: -1;
   }
 
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .text {
     font-size: 1.2rem;
     text-align: center;
     color: white;
     margin: 0 auto;
   }
+
+	a {
+		color: rgb(206, 209, 253);
+		transition: all 0.2s ease;
+
+		&:hover {
+			transform: translateY(-1px);
+			color: rgb(136, 117, 255);
+		}
+	}
 }

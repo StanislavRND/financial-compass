@@ -9,6 +9,7 @@ export const useAuthForm = <M extends Modes>(mode: M) => {
     handleSubmit,
     formState: { errors },
     control,
+    watch,
   } = useForm<FormData<M>>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
@@ -54,5 +55,5 @@ export const useAuthForm = <M extends Modes>(mode: M) => {
     }
   }
 
-  return { register, handleSubmit, errors, familyValue, onSubmit }
+  return { register, handleSubmit, errors, familyValue, onSubmit, watch }
 }

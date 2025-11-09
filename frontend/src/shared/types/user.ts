@@ -23,6 +23,7 @@ export type RegisterForm = LoginForm & {
   name: string
   isFamily: boolean
   invite?: string
+  agreement?: boolean
 }
 
 export type Modes = 'login' | 'register'
