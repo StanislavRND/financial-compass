@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const baseApi = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://80.87.195.94/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://80.87.195.94:3000/api' }),
   tagTypes: ['ExpenseCategories', 'IncomeCategories', 'Expenses', 'Income'],
   keepUnusedDataFor: 300,
   refetchOnMountOrArgChange: false,
